@@ -18,7 +18,6 @@ return require('packer').startup(function(use)
   use 'ThePrimeagen/harpoon'
   use "mbbill/undotree"
   use "tpope/vim-fugitive"
-  use 'tpope/rhubarb'
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
@@ -50,4 +49,5 @@ return require('packer').startup(function(use)
           vim.fn["mkdp#util#install"]()
       end,
   })
+  use 'voldikss/vim-floaterm'
 end)
