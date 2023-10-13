@@ -1,5 +1,4 @@
 -- This file can be loaded by calling `lua require('plugins')` from your init.vim
-
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
@@ -19,6 +18,7 @@ return require('packer').startup(function(use)
   use 'ThePrimeagen/harpoon'
   use "mbbill/undotree"
   use "tpope/vim-fugitive"
+  use 'tpope/rhubarb'
   use {
     'VonHeikemen/lsp-zero.nvim',
     branch = 'v3.x',
@@ -38,6 +38,9 @@ return require('packer').startup(function(use)
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "neovim/nvim-lspconfig",
+    'folke/neodev.nvim',
   }
   use 'wakatime/vim-wakatime'
+  -- Useful plugin to show you pending keybinds.
+  use 'folke/which-key.nvim'
 end)
