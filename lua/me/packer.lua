@@ -43,4 +43,11 @@ return require('packer').startup(function(use)
   use 'wakatime/vim-wakatime'
   -- Useful plugin to show you pending keybinds.
   use 'folke/which-key.nvim'
+   -- Markdown Preview
+  use({
+      "iamcco/markdown-preview.nvim",
+      run = function()
+          vim.fn["mkdp#util#install"]()
+      end,
+  })
 end)

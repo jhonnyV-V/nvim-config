@@ -1,5 +1,7 @@
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>pv", ":Ex<CR>")
+vim.keymap.set("n", "<leader>w", ":w<CR>")
+vim.keymap.set("n", "<leader><leader>", ":so<CR>")
 
 --move code selected up and down
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
@@ -57,7 +59,5 @@ vim.keymap.set("n", "<leader>mr", "<cmd>CellularAutomaton make_it_rain<CR>");
 --make file executable?
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
---magic
-vim.keymap.set("n", "<leader><leader>", function()
-  vim.cmd("so")
-end)
+vim.keymap.set("n", "<leader>m", "<CMD>MarkdownPreview<CR>")
+vim.keymap.set("n", "<leader>mn", "<CMD>MarkdownPreviewStop<CR>")
