@@ -12,6 +12,7 @@ require("mason-lspconfig").setup({
   'docker_compose_language_service',
   'zk',
   'yamlls',
+  'pyright',
   handlers = {
     lsp.default_setup,
   },
@@ -92,3 +93,4 @@ require('lspconfig').eslint.setup({
 })
 require('lspconfig').tsserver.setup({})
 require('lspconfig').docker_compose_language_service.setup({})
+require('lspconfig').pyright.setup({})
