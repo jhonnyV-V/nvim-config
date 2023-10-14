@@ -50,4 +50,5 @@ return require('packer').startup(function(use)
       end,
   })
   use 'voldikss/vim-floaterm'
+  use 'eandrju/cellular-automaton.nvim'
 end)
