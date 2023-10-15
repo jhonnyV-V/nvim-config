@@ -1,6 +1,6 @@
 require("mason").setup()
 local lsp = require("lsp-zero")
-require("mason-lspconfig").setup({
+local servers = {
   'tsserver',
   'eslint',
   'lua_ls',
@@ -16,7 +16,8 @@ require("mason-lspconfig").setup({
   handlers = {
     lsp.default_setup,
   },
-})
+}
+require("mason-lspconfig").setup(servers)
 
 lsp.configure('lua_ls', {
     settings = {
@@ -94,3 +95,4 @@ require('lspconfig').eslint.setup({
 require('lspconfig').tsserver.setup({})
 require('lspconfig').docker_compose_language_service.setup({})
 require('lspconfig').pyright.setup({})
+require('lspconfig').jedi_language_server.setup({})
