@@ -1,4 +1,4 @@
--- This file can be loaded by calling `lua require('plugins')` from your init.vim
+  -- This file can be loaded by calling `lua require('plugins')` from your init.vim
 -- Only required if you have packer configured as `opt`
 vim.cmd [[packadd packer.nvim]]
 
@@ -51,4 +51,6 @@ return require('packer').startup(function(use)
   })
   use 'voldikss/vim-floaterm'
   use 'eandrju/cellular-automaton.nvim'
+  use 'ThePrimeagen/vim-be-good'
+  use 'ThePrimeagen/vim-with-me'
 end)
