@@ -53,4 +53,13 @@ return require('packer').startup(function(use)
   use 'eandrju/cellular-automaton.nvim'
   use 'ThePrimeagen/vim-be-good'
   use 'ThePrimeagen/vim-with-me'
+  use({
+    "hinell/lsp-timeout.nvim",
+    requires={ "neovim/nvim-lspconfig" },
+    setup = function()
+      vim.g["lsp-timeout-config"] = {
+        -- ...
+      }
+    end
+  })
 end)
