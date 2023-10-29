@@ -35,6 +35,8 @@ cmp.setup({
   mapping = cmp.mapping.preset.insert({
     ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
     ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+    ['<C-p>'] = cmp.mapping.select_prev_item(),
+    ['<C-n>'] = cmp.mapping.select_next_item(),
     ['<C-y>'] = cmp.mapping.confirm({ select = true }),
     ['<C-Space>'] = cmp.mapping.complete(),
     ['<Tab>'] = cmp_action.tab_complete(),
@@ -74,6 +76,7 @@ vim.diagnostic.config({
     virtual_text = true
 })
 require('lspconfig').lua_ls.setup({})
+require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 require('lspconfig').cmake.setup({})
 require('lspconfig').golangci_lint_ls.setup({})
 --require('lspconfig').tailwindcss.setup({})
