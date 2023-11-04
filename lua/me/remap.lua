@@ -39,7 +39,7 @@ vim.keymap.set("n", "<leader>Y", [["+Y]])
 vim.keymap.set({ "n", "v" }, "<leader>d", [["_d]])
 
 -- create new tmux instance and let you change proyects
---vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
+vim.keymap.set("n", "<leader>tm", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 -- format code
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.format)
 
