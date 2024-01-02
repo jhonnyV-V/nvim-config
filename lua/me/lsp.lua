@@ -1,6 +1,7 @@
 require("mason").setup()
 require("mason-nvim-dap").setup()
 local lsp = require("lsp-zero").preset()
+local lspconfig = require("lspconfig")
 local servers = {
   'tsserver',
   'eslint',
@@ -74,19 +75,19 @@ lsp.setup()
 vim.diagnostic.config({
     virtual_text = true
 })
-require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-require('lspconfig').cmake.setup({})
-require('lspconfig').golangci_lint_ls.setup({})
---require('lspconfig').tailwindcss.setup({})
+lspconfig.lua_ls.setup(lsp.nvim_lua_ls())
+lspconfig.cmake.setup({})
+lspconfig.golangci_lint_ls.setup({})
+--lspconfig.tailwindcss.setup({})
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 require'lspconfig'.jsonls.setup {
   capabilities = capabilities,
 }
-require('lspconfig').html.setup {
+lspconfig.html.setup {
   capabilities = capabilities,
 }
-require('lspconfig').eslint.setup({
+lspconfig.eslint.setup({
   on_attach = function(client, bufnr)
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = bufnr,
@@ -94,7 +95,49 @@ require('lspconfig').eslint.setup({
     })
   end,
 })
-require('lspconfig').tsserver.setup({})
-require('lspconfig').docker_compose_language_service.setup({})
-require('lspconfig').pyright.setup({})
-require('lspconfig').jedi_language_server.setup({})
+lspconfig.tsserver.setup({})
+lspconfig.docker_compose_language_service.setup({})
+lspconfig.pyright.setup({})
+lspconfig.jedi_language_server.setup({})
+
+local server_config = {
+    ["doesItThrow"] = {
+        throwStatementSeverity = "Hint",
+        functionThrowSeverity = "Hint",
+        callToThrowSeverity = "Hint",
+        callToImportedThrowSeverity = "Hint",
+        includeTryStatementThrows = false,
+        maxNumberOfProblems = 10000
+    }
+}
+
+-- Setup doesItThrow
+if not lspconfig.configs.does_it_throw_server then
+    lspconfig.configs.does_it_throw_server = {
+        default_config = {
+            cmd = {"does-it-throw-lsp", "--stdio"},
+            filetypes = {"typescript", "javascript"},
+            root_dir = function(fname)
+                return vim.fn.getcwd()
+            end
+        }
+    }
+end
+
+lspconfig.does_it_throw_server.setup {
+    on_init = function(client)
+        client.config.settings = server_config
+    end,
+		-- important to set this up so that the server can find your desired settings
+    handlers = {
+        ["workspace/configuration"] = function(_, params, _, _)
+            local configurations = {}
+            for _, item in ipairs(params.items) do
+                if item.section then
+                    table.insert(configurations, server_config[item.section])
+                end
+            end
+            return configurations
+        end
+    }
+}
