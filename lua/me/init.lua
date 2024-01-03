@@ -8,4 +8,5 @@ require("me.lazygit")
 require("me.packer")
 require("me.lsp")
 require("me.oil")
+require("me.blackjack")
 vim.cmd[[colorscheme tokyonight]]

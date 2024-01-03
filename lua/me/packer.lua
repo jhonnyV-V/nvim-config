@@ -56,7 +56,7 @@ return require("packer").startup(function(use)
   use "rcarriga/nvim-dap-ui"
   use({
     "mfussenegger/nvim-dap",
-    requires =  {
+    requires = {
       -- Creates a beautiful debugger UI
       "rcarriga/nvim-dap-ui",
 
@@ -74,5 +74,9 @@ return require("packer").startup(function(use)
     config = function()
       require("oil").setup()
     end,
+  })
+  use ({
+    'alanfortlink/blackjack.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
   })
 end)

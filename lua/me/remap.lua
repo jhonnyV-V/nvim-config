@@ -63,3 +63,4 @@ vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 
 vim.keymap.set("n", "<leader>m", "<CMD>MarkdownPreview<CR>")
 vim.keymap.set("n", "<leader>mn", "<CMD>MarkdownPreviewStop<CR>")
+vim.keymap.set("n", "<leader>bj", "<CMD>BlackJackNewGame<CR>")
