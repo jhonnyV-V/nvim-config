@@ -15,6 +15,7 @@ local servers = {
   'zk',
   'yamlls',
   'pyright',
+  'clangd',
   handlers = {
     lsp.default_setup,
   },
@@ -99,6 +100,7 @@ lspconfig.tsserver.setup({})
 lspconfig.docker_compose_language_service.setup({})
 lspconfig.pyright.setup({})
 lspconfig.jedi_language_server.setup({})
+lspconfig.clangd.setup({})
 
 local server_config = {
     ["doesItThrow"] = {
