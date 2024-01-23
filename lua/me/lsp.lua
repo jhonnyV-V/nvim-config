@@ -112,34 +112,3 @@ local server_config = {
         maxNumberOfProblems = 10000
     }
 }
-
--- Setup doesItThrow
-if not lspconfig.configs.does_it_throw_server then
-    lspconfig.configs.does_it_throw_server = {
-        default_config = {
-            cmd = {"does-it-throw-lsp", "--stdio"},
-            filetypes = {"typescript", "javascript"},
-            root_dir = function(fname)
-                return vim.fn.getcwd()
-            end
-        }
-    }
-end
-
-lspconfig.does_it_throw_server.setup {
-    on_init = function(client)
-        client.config.settings = server_config
-    end,
-		-- important to set this up so that the server can find your desired settings
-    handlers = {
-        ["workspace/configuration"] = function(_, params, _, _)
-            local configurations = {}
-            for _, item in ipairs(params.items) do
-                if item.section then
-                    table.insert(configurations, server_config[item.section])
-                end
-            end
-            return configurations
-        end
-    }
-}
