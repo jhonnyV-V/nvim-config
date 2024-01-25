@@ -88,6 +88,7 @@ require'lspconfig'.jsonls.setup {
 lspconfig.html.setup {
   capabilities = capabilities,
 }
+--npm i -g vscode-langservers-extracted
 lspconfig.eslint.setup({
   on_attach = function(client, bufnr)
     vim.api.nvim_create_autocmd("BufWritePre", {
@@ -101,14 +102,3 @@ lspconfig.docker_compose_language_service.setup({})
 lspconfig.pyright.setup({})
 lspconfig.jedi_language_server.setup({})
 lspconfig.clangd.setup({})
-
-local server_config = {
-    ["doesItThrow"] = {
-        throwStatementSeverity = "Hint",
-        functionThrowSeverity = "Hint",
-        callToThrowSeverity = "Hint",
-        callToImportedThrowSeverity = "Hint",
-        includeTryStatementThrows = false,
-        maxNumberOfProblems = 10000
-    }
-}
