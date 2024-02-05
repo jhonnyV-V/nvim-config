@@ -75,8 +75,14 @@ return require("packer").startup(function(use)
       require("oil").setup()
     end,
   })
-  use ({
+  use({
     'alanfortlink/blackjack.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
+  })
+  use({
+    "ziontee113/color-picker.nvim",
+    config = function()
+      require("color-picker")
+    end,
   })
 end)

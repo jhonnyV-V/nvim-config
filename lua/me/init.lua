@@ -7,6 +7,7 @@ require("me.treesitter")
 require("me.undotree")
 require("me.lazygit")
 require("me.lsp")
-require("me.oil")
+require("me.oil-config")
 require("me.blackjack")
+require("me.color-picker-config")
 vim.cmd[[colorscheme tokyonight]]
