@@ -5,10 +5,10 @@ vim.cmd [[packadd packer.nvim]]
 return require("packer").startup(function(use)
   -- Packer can manage itself
   use "wbthomason/packer.nvim"
-  use {
-    "nvim-treesitter/nvim-treesitter",
-    run = function() require("nvim-treesitter.install").update { with_sync = true } end,
-  }
+  use({
+   "nvim-treesitter/nvim-treesitter",
+   run = function() require("nvim-treesitter.install").update { with_sync = true } end,
+  })
   use({
     "nvim-telescope/telescope.nvim",
     tag = "0.1.4",
@@ -84,5 +84,9 @@ return require("packer").startup(function(use)
     config = function()
       require("color-picker")
     end,
+  })
+  use({
+    'folke/trouble.nvim',
+    requires = { 'nvim-tree/nvim-web-devicons' },
   })
 end)

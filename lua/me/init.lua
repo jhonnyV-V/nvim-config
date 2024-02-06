@@ -10,4 +10,5 @@ require("me.lsp")
 require("me.oil-config")
 require("me.blackjack")
 require("me.color-picker-config")
+require("me.trouble-config")
 vim.cmd[[colorscheme tokyonight]]
