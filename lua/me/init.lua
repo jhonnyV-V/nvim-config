@@ -11,4 +11,5 @@ require("me.oil-config")
 require("me.blackjack")
 require("me.color-picker-config")
 require("me.trouble-config")
+require("me.neodev-config")
 vim.cmd[[colorscheme tokyonight]]

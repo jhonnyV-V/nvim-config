@@ -7,7 +7,12 @@ local servers = {
   'eslint',
   'lua_ls',
   'cmake',
+  'golangci-lint',
   'golangci_lint_ls',
+  'gopls',
+  'jedi_language_server',
+  'stylelint',
+  'cssmodules_ls',
   --'tailwindcss',
   'jsonls',
   'html',
@@ -102,3 +107,8 @@ lspconfig.docker_compose_language_service.setup({})
 lspconfig.pyright.setup({})
 lspconfig.jedi_language_server.setup({})
 lspconfig.clangd.setup({})
+lspconfig.cssmodules_ls.setup({})
+lspconfig.cssls.setup({
+  capabilities = capabilities,
+})
+
