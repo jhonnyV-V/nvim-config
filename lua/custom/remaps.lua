@@ -1,5 +1,3 @@
-vim.g.mapleader = " "
-vim.keymap.set("n", "<leader>pv", ":Oil<CR>", { desc = 'File Explorer' })
 vim.keymap.set("n", "<leader>w", ":w<CR>", { desc = 'Save File' })
 vim.keymap.set("n", "<leader><leader>", ":so<CR>", { desc = 'Source lua file' })
 
@@ -16,24 +14,6 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz", { desc = 'Jump half page up' })
 
 vim.keymap.set("n", "n", "nzzzv", { desc = 'Next search result' })
 vim.keymap.set("n", "N", "Nzzzv", { desc = 'Previous search result' })
-
-vim.keymap.set(
-  "n",
-  "<leader>vwm",
-  function()
-    require("vim-with-me").StartVimWithMe()
-  end,
-  { desc = '[V]im [W]ith [M]e' }
-)
-vim.keymap.set(
-  "n",
-  "<leader>svwm",
-  function()
-    require("vim-with-me").StopVimWithMe()
-  end,
-  { desc = '[S]top [V]im [W]ith [M]e' }
-)
-
 
 vim.keymap.set("x", "<leader>p", [["_dP]], { desc = 'Paste without yanking' })
 
@@ -71,21 +51,6 @@ vim.keymap.set(
 
 vim.keymap.set(
   "n",
-  "<leader>mr",
-  "<cmd>CellularAutomaton make_it_rain<CR>",
-  { desc = 'CellularAutomaton Make It Rain' }
-);
-
-vim.keymap.set(
-  "n",
-  "<leader>ml",
-  "<cmd>CellularAutomaton game_of_life<CR>",
-  { desc = 'CellularAutomaton Game Of Life' }
-)
-
---make file executable?
-vim.keymap.set(
-  "n",
   "<leader>x",
   "<cmd>!chmod +x %<CR>",
   {
@@ -94,6 +59,36 @@ vim.keymap.set(
   }
 )
 
-vim.keymap.set("n", "<leader>m", "<CMD>MarkdownPreview<CR>", { desc = 'MarkdownPreview Start' })
-vim.keymap.set("n", "<leader>mn", "<CMD>MarkdownPreviewStop<CR>", { desc = 'MarkdownPreview Stop' })
-vim.keymap.set("n", "<leader>bj", "<CMD>BlackJackNewGame<CR>", { desc = 'BlackJackNewGame' })
+-- Diagnostic keymaps
+-- TODO: check for duplication
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Go to previous [D]iagnostic message' })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Go to next [D]iagnostic message' })
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+-- Exit terminal mode in the builtin terminal with a shortcut that is a bit easier
+-- for people to discover. Otherwise, you normally need to press <C-\><C-n>, which
+-- is not what someone will guess without a bit more experience.
+--
+-- NOTE: This won't work in all terminal emulators/tmux/etc. Try your own mapping
+-- or just use <C-\><C-n> to exit terminal mode
+vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
+
+vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+
+-- [[ Basic Autocommands ]]
+--  See `:help lua-guide-autocommands`
+
+-- Highlight when yanking (copying) text
+--  Try it with `yap` in normal mode
+--  See `:help vim.highlight.on_yank()`
+vim.api.nvim_create_autocmd('TextYankPost', {
+  desc = 'Highlight when yanking (copying) text',
+  group = vim.api.nvim_create_augroup('kickstart-highlight-yank', { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})
