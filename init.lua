@@ -40,15 +40,15 @@ What is Kickstart?
 
 --]]
 
-require('custom.options')
-require('custom.remaps')
+require 'custom.options'
+require 'custom.remaps'
 
 -- [[ Install `lazy.nvim` plugin manager ]]
 --    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
 local lazypath = vim.fn.stdpath 'data' .. '/lazy/lazy.nvim'
 if not vim.loop.fs_stat(lazypath) then
-  local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
-  vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
+	local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
+	vim.fn.system { 'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath }
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
@@ -63,77 +63,77 @@ vim.opt.rtp:prepend(lazypath)
 --    :Lazy update
 --
 require('lazy').setup {
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
-  -- See `:help gitsigns` to understand what the configuration keys do
-  { -- Adds git related signs to the gutter, as well as utilities for managing changes
-    'lewis6991/gitsigns.nvim',
-    opts = {
-      signs = {
-        add = { text = '+' },
-        change = { text = '~' },
-        delete = { text = '_' },
-        topdelete = { text = '‾' },
-        changedelete = { text = '~' },
-      },
-    },
-  },
-  { -- Highlight todo, notes, etc in comments
-    'folke/todo-comments.nvim',
-    event = 'VimEnter',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = { signs = false }
-  },
-  {
-    -- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
-    'folke/tokyonight.nvim',
-    lazy = false,    -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
-    config = function()
-      vim.cmd.colorscheme 'tokyonight-night'
+	'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+	-- "gc" to comment visual regions/lines
+	{ 'numToStr/Comment.nvim', opts = {} },
+	-- See `:help gitsigns` to understand what the configuration keys do
+	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
+		'lewis6991/gitsigns.nvim',
+		opts = {
+			signs = {
+				add = { text = '+' },
+				change = { text = '~' },
+				delete = { text = '_' },
+				topdelete = { text = '‾' },
+				changedelete = { text = '~' },
+			},
+		},
+	},
+	{ -- Highlight todo, notes, etc in comments
+		'folke/todo-comments.nvim',
+		event = 'VimEnter',
+		dependencies = { 'nvim-lua/plenary.nvim' },
+		opts = { signs = false },
+	},
+	{
+		-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
+		'folke/tokyonight.nvim',
+		lazy = false, -- make sure we load this during startup if it is your main colorscheme
+		priority = 1000, -- make sure to load this before all the other start plugins
+		config = function()
+			vim.cmd.colorscheme 'tokyonight-night'
 
-      -- You can configure highlights by doing something like
-      vim.cmd.hi 'Comment gui=none'
-    end,
-  },
-  {
-    "wakatime/vim-wakatime",
-    lazy = false,
-    setup = function()
-      vim.cmd([[packadd wakatime/vim-wakatime]])
-    end
-  },
-  require('kickstart.plugins.debug'),
-  require('kickstart.plugins.indent_line'),
+			-- You can configure highlights by doing something like
+			vim.cmd.hi 'Comment gui=none'
+		end,
+	},
+	{
+		'wakatime/vim-wakatime',
+		lazy = false,
+		setup = function()
+			vim.cmd [[packadd wakatime/vim-wakatime]]
+		end,
+	},
+	require 'kickstart.plugins.debug',
+	require 'kickstart.plugins.indent_line',
 
-  require('custom.plugins.autocompletion'),
-  require('custom.plugins.automaton'),
-  require('custom.plugins.blackjack-game'),
-  require('custom.plugins.color-picker-config'),
-  require('custom.plugins.conform-config'),
-  require('custom.plugins.fugitive'),
-  require('custom.plugins.harpoon-config'),
-  require('custom.plugins.lazygit'),
-  require('custom.plugins.lsp'),
-  require('custom.plugins.markdown'),
-  require('custom.plugins.mini-config'),
-  require('custom.plugins.oil-config'),
-  require('custom.plugins.telescope-config'),
-  require('custom.plugins.treesitter-config'),
-  require('custom.plugins.trouble-config'),
-  require('custom.plugins.undootree-config'),
-  require('custom.plugins.vim-good'),
-  require('custom.plugins.vim-with-me-config'),
-  require('custom.plugins.which-key-config'),
-  -- require('custom.plugins.'),
+	require 'custom.plugins.autocompletion',
+	require 'custom.plugins.automaton',
+	require 'custom.plugins.blackjack-game',
+	require 'custom.plugins.color-picker-config',
+	require 'custom.plugins.conform-config',
+	require 'custom.plugins.fugitive',
+	require 'custom.plugins.harpoon-config',
+	require 'custom.plugins.lazygit',
+	require 'custom.plugins.lsp',
+	require 'custom.plugins.markdown',
+	require 'custom.plugins.mini-config',
+	require 'custom.plugins.oil-config',
+	require 'custom.plugins.telescope-config',
+	require 'custom.plugins.treesitter-config',
+	require 'custom.plugins.trouble-config',
+	require 'custom.plugins.undootree-config',
+	require 'custom.plugins.vim-good',
+	require 'custom.plugins.vim-with-me-config',
+	require 'custom.plugins.which-key-config',
+	-- require('custom.plugins.'),
 
-  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    This is the easiest way to modularize your config.
-  --
-  --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
-  -- { import = 'custom.plugins' },
+	-- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
+	--    This is the easiest way to modularize your config.
+	--
+	--  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
+	--    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
+	-- { import = 'custom.plugins' },
 }
 
 -- The line beneath this is called `modeline`. See `:help modeline`
