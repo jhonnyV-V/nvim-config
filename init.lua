@@ -103,6 +103,7 @@ require('lazy').setup {
 		setup = function()
 			vim.cmd [[packadd wakatime/vim-wakatime]]
 		end,
+		cmd = { 'WakaTimeToday', 'WakaTimeApiKey' },
 	},
 	require 'kickstart.plugins.debug',
 	require 'kickstart.plugins.indent_line',
@@ -122,7 +123,6 @@ require('lazy').setup {
 	require 'custom.plugins.pets-config',
 	require 'custom.plugins.telescope-config',
 	require 'custom.plugins.treesitter-config',
-	require 'custom.plugins.treesitter-context-config',
 	require 'custom.plugins.trouble-config',
 	require 'custom.plugins.undootree-config',
 	require 'custom.plugins.vim-good',
