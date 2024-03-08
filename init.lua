@@ -119,6 +119,7 @@ require('lazy').setup {
 	require 'custom.plugins.markdown',
 	require 'custom.plugins.mini-config',
 	require 'custom.plugins.oil-config',
+	require 'custom.plugins.pets-config',
 	require 'custom.plugins.telescope-config',
 	require 'custom.plugins.treesitter-config',
 	require 'custom.plugins.treesitter-context-config',
