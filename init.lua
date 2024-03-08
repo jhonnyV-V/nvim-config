@@ -121,6 +121,7 @@ require('lazy').setup {
 	require 'custom.plugins.oil-config',
 	require 'custom.plugins.telescope-config',
 	require 'custom.plugins.treesitter-config',
+	require 'custom.plugins.treesitter-context-config',
 	require 'custom.plugins.trouble-config',
 	require 'custom.plugins.undootree-config',
 	require 'custom.plugins.vim-good',
