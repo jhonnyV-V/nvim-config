@@ -116,9 +116,6 @@ require('lazy').setup {
 	{
 		'wakatime/vim-wakatime',
 		lazy = false,
-		setup = function()
-			vim.cmd [[packadd wakatime/vim-wakatime]]
-		end,
 		cmd = { 'WakaTimeToday', 'WakaTimeApiKey' },
 	},
 	require 'kickstart.plugins.debug',
