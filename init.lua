@@ -129,7 +129,7 @@ require('lazy').setup {
 	require 'custom.plugins.conform-config',
 	require 'custom.plugins.fugitive',
 	require 'custom.plugins.harpoon-config',
-	require 'custom.plugins.lazygit',
+	require 'custom.plugins.lazygit-config',
 	require 'custom.plugins.lsp',
 	require 'custom.plugins.markdown',
 	require 'custom.plugins.mini-config',
