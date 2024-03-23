@@ -124,6 +124,7 @@ require('lazy').setup {
 	require 'custom.plugins.autocompletion',
 	require 'custom.plugins.automaton',
 	require 'custom.plugins.blackjack-game',
+	require 'custom.plugins.codeium-config',
 	require 'custom.plugins.color-picker-config',
 	require 'custom.plugins.conform-config',
 	require 'custom.plugins.fugitive',
