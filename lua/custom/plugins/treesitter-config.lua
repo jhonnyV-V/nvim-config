@@ -23,7 +23,12 @@ return { -- Highlight, edit, and navigate code
 				{
 					']c',
 					function()
-						require('treesitter-context').go_to_context(vim.v.count1)
+						-- require('treesitter-context').go_to_context(vim.v.count1)
+						-- require('treesitter-context').go_to_context()
+						vim.schedule(function()
+							require('treesitter-context').go_to_context()
+						end)
+						return '<Ignore>'
 					end,
 					desc = 'Jump to upper context',
 					expr = true,
