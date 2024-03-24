@@ -162,6 +162,7 @@ return { -- LSP Configuration & Plugins
 			html = {
 				capabilities = capabilities,
 			},
+			htmx = {},
 			docker_compose_language_service = {},
 			zk = {},
 			yamlls = {},
