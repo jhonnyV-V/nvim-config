@@ -5,6 +5,8 @@ return { -- LSP Configuration & Plugins
 		'williamboman/mason.nvim',
 		'williamboman/mason-lspconfig.nvim',
 		'WhoIsSethDaniel/mason-tool-installer.nvim',
+		--adding neodev
+		'folke/neodev.nvim',
 
 		-- Useful status updates for LSP.
 		-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -121,6 +123,20 @@ return { -- LSP Configuration & Plugins
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
 
+		require('neodev').setup {
+			library = {
+				plugins = {
+					'nvim-dap-ui',
+					'telescope.nvim',
+					'plenary.nvim',
+					'nvim-treesitter',
+				},
+				enabled = true,
+				runtime = true,
+				types = true,
+			},
+		}
+
 		-- Enable the following language servers
 		--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
 		--
@@ -168,7 +184,6 @@ return { -- LSP Configuration & Plugins
 			yamlls = {},
 			pyright = {},
 			clangd = {},
-
 			lua_ls = {
 				-- cmd = {...},
 				-- filetypes { ...},
