@@ -129,6 +129,7 @@ require('lazy').setup {
 	require 'custom.plugins.codesnaps-config',
 	require 'custom.plugins.color-picker-config',
 	require 'custom.plugins.conform-config',
+	require 'custom.plugins.dabbod-ui-config',
 	require 'custom.plugins.fugitive',
 	require 'custom.plugins.harpoon-config',
 	require 'custom.plugins.lazygit-config',
