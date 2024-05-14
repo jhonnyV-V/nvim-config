@@ -145,7 +145,7 @@ require('lazy').setup {
 	require 'custom.plugins.undootree-config',
 	require 'custom.plugins.vim-good',
 	require 'custom.plugins.vim-with-me-config',
-	require 'custom.plugins.which-key-config',
+	-- require 'custom.plugins.which-key-config',
 	-- require('custom.plugins.'),
 
 	-- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
