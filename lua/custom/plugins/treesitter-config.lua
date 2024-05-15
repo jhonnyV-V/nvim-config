@@ -50,6 +50,7 @@ return { -- Highlight, edit, and navigate code
 				'html',
 				'lua',
 				'markdown',
+				'markdown_inline',
 				'vim',
 				'vimdoc',
 				'javascript',
