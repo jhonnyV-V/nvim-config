@@ -134,6 +134,7 @@ require('lazy').setup {
 	require 'custom.plugins.harpoon-config',
 	require 'custom.plugins.lazygit-config',
 	require 'custom.plugins.lsp',
+	require 'custom.plugins.markdown-live',
 	require 'custom.plugins.markdown',
 	require 'custom.plugins.mini-config',
 	-- require 'custom.plugins.needs-key',
