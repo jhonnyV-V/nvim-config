@@ -7,13 +7,12 @@
 -- kickstart.nvim and not kitchen-sink.nvim ;)
 
 return {
-	-- NOTE: Yes, you can install new plugins here!
 	'mfussenegger/nvim-dap',
-	-- NOTE: And you can specify dependencies as well
 	dependencies = {
 		-- Creates a beautiful debugger UI
 		'rcarriga/nvim-dap-ui',
 		'nvim-neotest/nvim-nio',
+		'theHamsta/nvim-dap-virtual-text',
 
 		-- Installs the debug adapters for you
 		'williamboman/mason.nvim',
@@ -52,6 +51,9 @@ return {
 		vim.keymap.set('n', '<leader>B', function()
 			dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
 		end, { desc = 'Debug: Set Breakpoint' })
+		vim.keymap.set('n', '<space>?', function()
+			dapui.eval(nil, { enter = true })
+		end, { desc = 'Debug: Evaluate Var Under Cursor' })
 
 		-- Dap UI setup
 		-- For more information, see |:help nvim-dap-ui|
@@ -75,6 +77,11 @@ return {
 			},
 		}
 
+		require('nvim-dap-virtual-text').setup {
+			enable_commands = true,
+			show_stop_reason = true,
+		}
+
 		-- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
 		vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
 
@@ -84,5 +91,6 @@ return {
 
 		-- Install golang specific config
 		require('dap-go').setup()
+		-- WARNING: set dlv in path or it will not work
 	end,
 }
