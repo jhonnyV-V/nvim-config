@@ -13,6 +13,19 @@ return { -- LSP Configuration & Plugins
 		{ 'j-hui/fidget.nvim', opts = {} },
 	},
 	config = function()
+		require('neodev').setup {
+			library = {
+				plugins = {
+					'nvim-dap-ui',
+					'telescope.nvim',
+					'plenary.nvim',
+					'nvim-treesitter',
+				},
+				enabled = true,
+				runtime = true,
+				types = true,
+			},
+		}
 		-- Brief Aside: **What is LSP?**
 		--
 		-- LSP is an acronym you've probably heard, but might not understand what it is.
@@ -122,20 +135,6 @@ return { -- LSP Configuration & Plugins
 		--  So, we create new capabilities with nvim cmp, and then broadcast that to the servers.
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 		capabilities = vim.tbl_deep_extend('force', capabilities, require('cmp_nvim_lsp').default_capabilities())
-
-		require('neodev').setup {
-			library = {
-				plugins = {
-					'nvim-dap-ui',
-					'telescope.nvim',
-					'plenary.nvim',
-					'nvim-treesitter',
-				},
-				enabled = true,
-				runtime = true,
-				types = true,
-			},
-		}
 
 		-- Enable the following language servers
 		--  Feel free to add/remove any LSPs that you want here. They will automatically be installed.

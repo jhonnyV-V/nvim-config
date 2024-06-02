@@ -60,8 +60,6 @@ return {
 		-- For more information, see |:help nvim-dap-ui|
 		dapui.setup {
 			-- Set icons to characters that are more likely to work in every terminal.
-			--    Feel free to remove or use ones that you like more! :)
-			--    Don't feel like these are good choices.
 			icons = { expanded = '▾', collapsed = '▸', current_frame = '*' },
 			controls = {
 				icons = {
@@ -91,7 +89,7 @@ return {
 		dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
 		-- Install golang specific config
-		local dap_go = require('dap-go')
+		local dap_go = require 'dap-go'
 		dap_go.setup()
 		vim.keymap.set('n', '<leader>dt', dap_go.debug_test, { desc = 'Debug Go: Debug Test' })
 		-- WARNING: set dlv in path or it will not work
