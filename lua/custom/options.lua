@@ -87,3 +87,17 @@ vim.opt.incsearch = true
 vim.opt.scrolloff = 8
 
 vim.opt.fileformat = 'unix'
+
+--TODO: put this in another place
+
+-- exec command on godot
+-- --server /home/user/.cache/nvim/godot.pipe --remote-send "<CR>:Oil {file}<CR><CR>:call cursor({line},{col})<CR>
+if vim.fn.filereadable(vim.fn.getcwd() .. '/project.godot') == 1 then
+	local addr = vim.fn.stdpath 'cache' .. '/godot.pipe'
+	if vim.fn.has 'win32' == 1 then
+		addr = '127.0.0.1:6004'
+		vim.fn.serverstart(addr)
+	elseif not vim.loop.fs_stat(addr) then
+		vim.fn.serverstart(addr)
+	end
+end
