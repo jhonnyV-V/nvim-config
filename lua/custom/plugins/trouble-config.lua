@@ -5,6 +5,7 @@ return {
 		'nvim-telescope/telescope.nvim',
 	},
 	opts = {
+		focus = true,
 		position = 'bottom', -- position of the list can be: bottom, top, left, right
 		height = 10, -- height of the trouble list when position is top or bottom
 		width = 50, -- width of the list when position is left or right
@@ -45,7 +46,7 @@ return {
 		win_config = { border = 'single' }, -- window configuration for floating windows. See |nvim_open_win()|.
 		auto_open = false, -- automatically open the list when you have diagnostics
 		auto_close = false, -- automatically close the list when you have no diagnostics
-		auto_preview = true, -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
+		auto_preview = false, -- automatically preview the location of the diagnostic. <esc> to close preview and go back to last window
 		auto_fold = false, -- automatically fold a file trouble list at creation
 		auto_jump = { 'lsp_definitions' }, -- for the given modes, automatically jump if there is only a single result
 		-- for the given modes, include the declaration of the current symbol in the results

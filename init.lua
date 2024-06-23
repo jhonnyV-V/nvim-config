@@ -107,6 +107,7 @@ require('lazy').setup {
 		lazy = false, -- make sure we load this during startup if it is your main colorscheme
 		priority = 1000, -- make sure to load this before all the other start plugins
 		config = function()
+			require('tokyonight').setup { transparent = vim.g.transparent_enabled }
 			vim.cmd.colorscheme 'tokyonight-storm'
 
 			-- You can configure highlights by doing something like
@@ -141,6 +142,7 @@ require('lazy').setup {
 	require 'custom.plugins.oil-config',
 	require 'custom.plugins.pets-config',
 	require 'custom.plugins.telescope-config',
+	require 'custom.plugins.transparent-config',
 	require 'custom.plugins.treesitter-config',
 	require 'custom.plugins.trouble-config',
 	require 'custom.plugins.undootree-config',
