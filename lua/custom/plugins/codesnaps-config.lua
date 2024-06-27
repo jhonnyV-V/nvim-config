@@ -6,11 +6,15 @@ local function getSavePath()
 	end
 end
 return {
-	'mistricky/codesnap.nvim',
+	--'mistricky/codesnap.nvim',
+	'jhonnyV-V/codesnap.nvim',
+	branch = 'feature/wsl-copy-to-clipboard',
 	build = 'make',
 	cmd = {
 		'CodeSnap', --Take a snapshot of the currently selected code and copy the snapshot into the clipboard
 		'CodeSnapSave', --Save the snapshot of the currently selected code and save it on the disk
+		'CodeSnapHighlight', -- Take code snapshot with highlights code blocks and copy it into the clipboard
+		'CodeSnapSaveHighlight', -- Take code snapshot with highlights code blocks and save it somewhere
 	},
 	lazy = true,
 	opts = {
@@ -22,6 +26,7 @@ return {
 		bg_theme = 'default', -- (optional) bamboo, sea, peach, grape, dusk, summer, default, or #RRGGBB
 		breadcrumbs_separator = '/',
 		has_breadcrumbs = false,
+		has_line_number = true,
 		-- The save_path must be ends with .png, unless when you specified a directory path,
 		-- CodeSnap will append an auto-generated filename to the specified directory path
 		-- For example:
