@@ -1,13 +1,16 @@
 return {
-	'iamcco/markdown-preview.nvim',
-	cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+	'OXY2DEV/markview.nvim',
+	cmd = { 'Markview' },
+	dependencies = {
+		-- You may not need this if you don't lazy load
+		-- Or if the parsers are in your $RUNTIMEPATH
+		'nvim-treesitter/nvim-treesitter',
+
+		'nvim-tree/nvim-web-devicons',
+	},
 	ft = { 'markdown' },
 	lazy = true,
-	build = function()
-		vim.fn['mkdp#util#install']()
-	end,
 	config = function()
-		vim.keymap.set('n', '<leader>m', '<CMD>MarkdownPreview<CR>', { desc = 'MarkdownPreview Start' })
-		vim.keymap.set('n', '<leader>mn', '<CMD>MarkdownPreviewStop<CR>', { desc = 'MarkdownPreview Stop' })
+		vim.keymap.set('n', '<leader>m', '<CMD>Markview<CR>', { desc = 'MarkView Toggle' })
 	end,
 }
