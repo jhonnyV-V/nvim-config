@@ -2,13 +2,11 @@ local function getSavePath()
 	if vim.fn.has 'wsl' then
 		return '/mnt/c/Users/jhonny/Pictures/codesnapshots/'
 	else
-		return '~/pictures/'
+		return '~/Pictures/'
 	end
 end
 return {
-	--'mistricky/codesnap.nvim',
-	'jhonnyV-V/codesnap.nvim',
-	branch = 'feature/wsl-copy-to-clipboard',
+	'mistricky/codesnap.nvim',
 	build = 'make',
 	cmd = {
 		'CodeSnap', --Take a snapshot of the currently selected code and copy the snapshot into the clipboard
