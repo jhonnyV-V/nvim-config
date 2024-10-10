@@ -156,7 +156,7 @@ return { -- LSP Configuration & Plugins
 			-- tsserver = {},
 			--
 
-			tsserver = {},
+			ts_ls = {},
 			eslint = {},
 			cmake = {},
 			-- golangci_lint = {},
