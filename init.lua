@@ -65,10 +65,11 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup {
 	'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 	-- "gc" to comment visual regions/lines
-	{ 'numToStr/Comment.nvim', opts = {} },
+	{ 'numToStr/Comment.nvim', opts = {}, lazy = true },
 	-- See `:help gitsigns` to understand what the configuration keys do
 	{ -- Adds git related signs to the gutter, as well as utilities for managing changes
 		'lewis6991/gitsigns.nvim',
+		lazy = true,
 		opts = {
 			signs = {
 				add = { text = '+' },
@@ -84,6 +85,7 @@ require('lazy').setup {
 		event = 'VimEnter',
 		dependencies = { 'nvim-lua/plenary.nvim' },
 		opts = { signs = false },
+		lazy = true,
 		keys = {
 			{
 				'[t',

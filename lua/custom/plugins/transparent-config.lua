@@ -1,6 +1,7 @@
 return {
 	'xiyaowong/transparent.nvim',
 	cmd = { 'TransparentEnable', 'TransparentDisable', 'TransparentToggle' },
+	lazy = true,
 
 	config = function()
 		require('transparent').setup { -- Optional, you don't have to run setup.

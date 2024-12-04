@@ -4,6 +4,7 @@ return {
 		'nvim-tree/nvim-web-devicons',
 		'nvim-telescope/telescope.nvim',
 	},
+	lazy = true,
 	opts = {
 		focus = true,
 		position = 'bottom', -- position of the list can be: bottom, top, left, right

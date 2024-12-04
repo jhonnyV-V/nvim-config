@@ -1,6 +1,7 @@
 return {
 	'laytan/cloak.nvim',
 	cmd = { 'CloakDisble', 'CloakEnable', 'CloakToggle', 'CloakPreviewLine' },
+	lazy = true,
 	opts = {
 		enabled = true,
 		cloak_character = '#',
