@@ -35,13 +35,19 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		-- You can put your default mappings / updates / etc. in here
 		--  All the info you're looking for is in `:help telescope.setup()`
 		--
-		-- defaults = {
-		--   mappings = {
-		--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-		--   },
+		--defaults = {
+			--   mappings = {
+			--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+			--layout_strategy = 'vertical',
+		--},
 		-- },
-		-- pickers = {}
+		-- pickers = {
+		-- 	find_files = {
+		-- 		theme = "ivy",
+		-- 	},
+		-- },
 		extensions = {
+			fzf = {},
 			['ui-select'] = {
 				function()
 					require('telescope.themes').get_dropdown()
@@ -107,6 +113,15 @@ return { -- Fuzzy Finder (files, lsp, etc)
 				}
 			end,
 			desc = 'Telescope: [S]earch [N]eovim files'
+		},
+		{
+			'<leader>sp',
+			function()
+				require('telescope.builtin').find_files {
+					cwd = vim.fn.stdpath 'data'
+				}
+			end,
+			desc = 'Telescope: [S]earch [P]ackages files'
 		},
 	}
 }
