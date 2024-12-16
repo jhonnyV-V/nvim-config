@@ -80,29 +80,6 @@ require('lazy').setup {
 			},
 		},
 	},
-	{ -- Highlight todo, notes, etc in comments
-		'folke/todo-comments.nvim',
-		event = 'VimEnter',
-		dependencies = { 'nvim-lua/plenary.nvim' },
-		opts = { signs = false },
-		lazy = true,
-		keys = {
-			{
-				'[t',
-				function()
-					require('todo-comments').jump_next()
-				end,
-				desc = 'Next todo comment',
-			},
-			{
-				']t',
-				function()
-					require('todo-comments').jump_prev()
-				end,
-				desc = 'Previous todo comment',
-			},
-		},
-	},
 	{
 		-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
 		'folke/tokyonight.nvim',
@@ -146,6 +123,7 @@ require('lazy').setup {
 	require 'custom.plugins.oil-config',
 	require 'custom.plugins.pets-config',
 	require 'custom.plugins.telescope-config',
+	require 'custom.plugins.todo-config',
 	require 'custom.plugins.transparent-config',
 	require 'custom.plugins.treesitter-config',
 	require 'custom.plugins.trouble-config',
