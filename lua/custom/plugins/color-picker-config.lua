@@ -18,15 +18,13 @@ return {
 		['text_highlight_group'] = 'Normal', --default
 	},
 	config = function()
-		vim.keymap.set('n', '<leader>pc', '<cmd>PickColor<cr>', {
-			noremap = true,
-			silent = true,
-			desc = 'Open ColorPicker',
-		})
 		-- vim.keymap.set("i", "<C-c>", "<cmd>PickColorInsert<cr>", opts)
 
 		-- vim.keymap.set("n", "your_keymap", "<cmd>ConvertHEXandRGB<cr>", opts)
 		-- vim.keymap.set("n", "your_keymap", "<cmd>ConvertHEXandHSL<cr>", opts)
 		vim.cmd [[hi FloatBorder guibg=NONE]] -- if you don't want weird border background colors around the popup.
 	end,
+	keys = {
+		{'<leader>pc', '<cmd>PickColor<cr>', noremap = true, silent = true, desc = 'Color Picker: Open ColorPicker'},
+	},
 }

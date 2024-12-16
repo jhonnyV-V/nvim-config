@@ -17,78 +17,96 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		--  you can enable this
 		{ 'nvim-tree/nvim-web-devicons' },
 	},
-	config = function()
-		-- The easiest way to use telescope, is to start by doing something like:
-		--  :Telescope help_tags
-		--
-		-- Two important keymaps to use while in telescope are:
-		--  - Insert mode: <c-/>
-		--  - Normal mode: ?
-		--
-		-- This opens a window that shows you all of the keymaps for the current
-		-- telescope picker. This is really useful to discover what Telescope can
-		-- do as well as how to actually do it!
 
-		-- [[ Configure Telescope ]]
-		-- See `:help telescope` and `:help telescope.setup()`
-		require('telescope').setup {
-			-- You can put your default mappings / updates / etc. in here
-			--  All the info you're looking for is in `:help telescope.setup()`
-			--
-			-- defaults = {
-			--   mappings = {
-			--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-			--   },
-			-- },
-			-- pickers = {}
-			extensions = {
-				['ui-select'] = {
-					require('telescope.themes').get_dropdown(),
-				},
+	-- The easiest way to use telescope, is to start by doing something like:
+	--  :Telescope help_tags
+	--
+	-- Two important keymaps to use while in telescope are:
+	--  - Insert mode: <c-/>
+	--  - Normal mode: ?
+	--
+	-- This opens a window that shows you all of the keymaps for the current
+	-- telescope picker. This is really useful to discover what Telescope can
+	-- do as well as how to actually do it!
+
+	-- [[ Configure Telescope ]]
+	-- See `:help telescope` and `:help telescope.setup()`
+	opts = {
+		-- You can put your default mappings / updates / etc. in here
+		--  All the info you're looking for is in `:help telescope.setup()`
+		--
+		-- defaults = {
+		--   mappings = {
+		--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+		--   },
+		-- },
+		-- pickers = {}
+		extensions = {
+			['ui-select'] = {
+				function()
+					require('telescope.themes').get_dropdown()
+				end,
 			},
-		}
-
+		},
+	},
+	config = function()
 		-- Enable telescope extensions, if they are installed
 		pcall(require('telescope').load_extension, 'fzf')
 		pcall(require('telescope').load_extension, 'ui-select')
-
-		local builtin = require 'telescope.builtin'
-		vim.keymap.set('n', '<leader>ps', function()
-			builtin.grep_string { search = vim.fn.input 'Grep > ' }
-		end, { desc = 'Grep Word' })
-		vim.keymap.set('n', '<leader>gf', builtin.git_files, { desc = 'Search [G]it [F]iles' })
-		vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = '[S]earch [F]iles' })
-		vim.keymap.set('n', '<leader>sb', builtin.buffers, { desc = '[S]earch [B]uffer' })
-		vim.keymap.set('n', '<leader>qf', builtin.quickfix, { desc = '[Q]uick [F]ix list' })
-
-		vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
-		vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
-		vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
-		vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
-		vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
-		vim.keymap.set('n', '<leader>sd', builtin.diagnostics, { desc = '[S]earch [D]iagnostics' })
-		vim.keymap.set('n', '<leader>sr', builtin.resume, { desc = '[S]earch [R]esume' })
-		vim.keymap.set('n', '<leader>s.', builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
-
-		-- Slightly advanced example of overriding default behavior and theme
-		vim.keymap.set('n', '<leader>/', function()
-			-- You can pass additional configuration to telescope to change theme, layout, etc.
-			builtin.current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
-				winblend = 10,
-				previewer = false,
-			})
-		end, { desc = '[/] Fuzzily search in current buffer' })
-
-		vim.keymap.set('n', '<leader>s/', function()
-			builtin.live_grep {
-				grep_open_files = true,
-				prompt_title = 'Live Grep in Open Files',
-			}
-		end, { desc = '[S]earch [/] in Open Files' })
-
-		-- Shortcut for searching your neovim configuration files
-		vim.keymap.set('n', '<leader>sn', function()
-			builtin.find_files { cwd = vim.fn.stdpath 'config' }
-		end, { desc = '[S]earch [N]eovim files' })
 	end,
+	keys = {
+		{
+			'<leader>ps',
+			function()
+				require('telescope.builtin').grep_string {
+					search = vim.fn.input 'Grep > '
+				}
+			end,
+			desc = 'Grep Word'
+		},
+		{ '<leader>gf', function() require('telescope.builtin').git_files() end,   desc = 'Telescope: Search [G]it [F]iles' },
+		{ '<leader>pf', function() require('telescope.builtin').find_files() end,  desc = 'Telescope: [S]earch [F]iles' },
+		{ '<leader>sb', function() require('telescope.builtin').buffers() end,     desc = 'Telescope: [S]earch [B]uffer' },
+		{ '<leader>qf', function() require('telescope.builtin').quickfix() end,    desc = 'Telescope: [Q]uick [F]ix list' },
+		{ '<leader>sh', function() require('telescope.builtin').help_tags() end,   desc = 'Telescope: [S]earch [H]elp' },
+		{ '<leader>sk', function() require('telescope.builtin').keymaps() end,     desc = 'Telescope: [S]earch [K]eymaps' },
+		{ '<leader>ss', function() require('telescope.builtin').builtin() end,     desc = 'Telescope: [S]earch [S]elect Telescope' },
+		{ '<leader>sw', function() require('telescope.builtin').grep_string() end, desc = 'Telescope: [S]earch current [W]ord' },
+		{ '<leader>sg', function() require('telescope.builtin').live_grep() end,   desc = 'Telescope: [S]earch by [G]rep' },
+		{ '<leader>sd', function() require('telescope.builtin').diagnostics() end, desc = 'Telescope: [S]earch [D]iagnostics' },
+		{ '<leader>sr', function() require('telescope.builtin').resume() end,      desc = 'Telescope: [S]earch [R]esume' },
+		{ '<leader>s.', function() require('telescope.builtin').oldfiles() end,    desc = 'Telescope: [S]earch Recent Files ("." for repeat)' },
+		-- Slightly advanced example of overriding default behavior and theme
+		{
+			'<leader>/',
+			function()
+				-- You can pass additional configuration to telescope to change theme, layout, etc.
+				require('telescope.builtin').current_buffer_fuzzy_find(require('telescope.themes').get_dropdown {
+					winblend = 10,
+					previewer = false,
+				})
+			end,
+			desc = 'Telescope: [/] Fuzzily search in current buffer'
+		},
+		{
+			'<leader>s/',
+			function()
+				require('telescope.builtin').live_grep {
+					grep_open_files = true,
+					prompt_title = 'Live Grep in Open Files',
+				}
+			end,
+			desc = 'Telescope: [S]earch [/] in Open Files'
+		},
+		-- Shortcut for searching your neovim configuration files
+		{
+			'<leader>sn',
+			function()
+				require('telescope.builtin').find_files {
+					cwd = vim.fn.stdpath 'config'
+				}
+			end,
+			desc = 'Telescope: [S]earch [N]eovim files'
+		},
+	}
 }

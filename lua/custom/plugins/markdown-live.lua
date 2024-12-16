@@ -4,7 +4,5 @@ return {
 	lazy = true,
 	dependencies = { 'nvim-treesitter/nvim-treesitter' },
 	cmd = { 'RenderMarkdownToggle' },
-	config = function()
-		require('render-markdown').setup {}
-	end,
+	opts = {},
 }

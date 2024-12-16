@@ -108,8 +108,10 @@ require('lazy').setup {
 		'folke/tokyonight.nvim',
 		lazy = false, -- make sure we load this during startup if it is your main colorscheme
 		priority = 1000, -- make sure to load this before all the other start plugins
+    opts = {
+      transparent = vim.g.transparent_enabled
+    },
 		config = function()
-			require('tokyonight').setup { transparent = vim.g.transparent_enabled }
 			vim.cmd.colorscheme 'tokyonight-storm'
 
 			-- You can configure highlights by doing something like

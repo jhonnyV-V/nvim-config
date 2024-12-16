@@ -10,7 +10,7 @@ return {
 	},
 	ft = { 'markdown' },
 	lazy = true,
-	config = function()
-		vim.keymap.set('n', '<leader>m', '<CMD>Markview<CR>', { desc = 'MarkView Toggle' })
-	end,
+	keys = {
+		{'<leader>m', '<CMD>Markview<CR>', desc = 'MarkView Toggle'},
+	},
 }

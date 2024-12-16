@@ -35,7 +35,7 @@ vim.keymap.set('n', '<leader>k', '<cmd>lprev<CR>zz')
 
 vim.keymap.set('n', '<leader>s', [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], { desc = 'Replace word in file' })
 
-vim.keymap.set('n', '<leader>x', '<cmd>!chmod +x %<CR>', {
+vim.keymap.set('n', '<leader>ex', '<cmd>!chmod +x %<CR>', {
 	silent = true,
 	desc = 'Make current file an executable (chmod)',
 })
