@@ -21,7 +21,7 @@ return { -- Highlight todo, notes, etc in comments
 		},
 		{
 			'<leader>st',
-			"<cmd>TodoTelescope<CR><cmd>",
+			"<cmd>TodoTelescope<CR>",
 			desc = 'Telescope: TODO comments',
 		},
 	},
