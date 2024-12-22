@@ -22,7 +22,7 @@ vim.keymap.set('n', '<leader>Y', [["+Y]], { desc = 'Yank line to the + register'
 vim.keymap.set({ 'n', 'v' }, '<leader>d', [["_d]], { desc = 'Delete to the void' })
 vim.keymap.set('n', '<leader>D', [["_D]], { desc = 'Delete line to the void (_ register)' })
 
-vim.keymap.set('n', '<leader>tm', '<cmd>silent !tmux neww tmux-sessionizer<CR>', { desc = 'Open Tmux-sessionizer' })
+-- vim.keymap.set('n', '<leader>tm', '<cmd>silent !tmux neww tmux-sessionizer<CR>', { desc = 'Open Tmux-sessionizer' })
 
 vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, { desc = 'Lsp Format' })
 

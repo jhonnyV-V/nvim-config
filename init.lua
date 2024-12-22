@@ -122,6 +122,7 @@ require('lazy').setup {
 	-- require 'custom.plugins.needs-key',
 	require 'custom.plugins.oil-config',
 	require 'custom.plugins.pets-config',
+	require 'custom.plugins.phoemux-telescope',
 	require 'custom.plugins.telescope-config',
 	require 'custom.plugins.todo-config',
 	require 'custom.plugins.transparent-config',
