@@ -26,6 +26,9 @@ return {
 			},
 		}
 	},
+
+	build = "cargo build --release",
+	version = "*",
 	opts = {
 		keymap = {
 			preset = 'default',
@@ -73,5 +76,5 @@ return {
 	},
 	-- allows extending the providers array elsewhere in your config
 	-- without having to redefine it
-	opts_extend = { "sources.default" }
+	opts_extend = { "sources.default" },
 }
