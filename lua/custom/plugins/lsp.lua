@@ -5,27 +5,29 @@ return { -- LSP Configuration & Plugins
 		'williamboman/mason.nvim',
 		'williamboman/mason-lspconfig.nvim',
 		'WhoIsSethDaniel/mason-tool-installer.nvim',
-		--adding neodev
-		'folke/neodev.nvim',
 
 		-- Useful status updates for LSP.
 		-- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
 		{ 'j-hui/fidget.nvim', opts = {} },
 	},
 	config = function()
-		require('neodev').setup {
-			library = {
-				plugins = {
-					'nvim-dap-ui',
-					'telescope.nvim',
-					'plenary.nvim',
-					'nvim-treesitter',
-				},
-				enabled = true,
-				runtime = true,
-				types = true,
-			},
-		}
+		-- require('neodev').setup {
+		-- 	library = {
+		-- 		plugins = {
+		-- 			'nvim-dap-ui',
+		-- 			'telescope.nvim',
+		-- 			'plenary.nvim',
+		-- 			'nvim-treesitter',
+		-- 		},
+		-- 		enabled = true,
+		-- 		runtime = true,
+		-- 		types = true,
+		-- 	},
+		-- }
+
+
+
+
 		-- Brief Aside: **What is LSP?**
 		--
 		-- LSP is an acronym you've probably heard, but might not understand what it is.
@@ -201,7 +203,11 @@ return { -- LSP Configuration & Plugins
 							},
 							--]]
 							-- If lua_ls is really slow on your computer, you can try this instead:
-							library = { vim.env.VIMRUNTIME },
+							-- library = { vim.env.VIMRUNTIME },
+							library = {
+								'${3rd}/luv/library',
+								unpack(vim.api.nvim_get_runtime_file('lua', true)),
+							}
 						},
 						completion = {
 							callSnippet = 'Replace',

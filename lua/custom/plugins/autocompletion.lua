@@ -16,6 +16,15 @@ return {
 			end)(),
 			dependencies = 'rafamadriz/friendly-snippets',
 		},
+		{
+			"folke/lazydev.nvim",
+			ft = "lua",
+			opts = {
+				library = {
+					{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+				},
+			},
+		}
 	},
 	opts = {
 		keymap = {
@@ -47,9 +56,16 @@ return {
 		-- default list of enabled providers defined so that you can extend it
 		-- elsewhere in your config, without redefining it, via `opts_extend`
 		sources = {
-			default = { 'lsp', 'path', 'luasnip', 'snippets', 'buffer' },
+			default = { 'lazydev', 'lsp', 'path', 'luasnip', 'snippets', 'buffer' },
 			-- optionally disable cmdline completions
 			-- cmdline = {},
+			providers = {
+				lazydev = {
+					name = "LazyDev",
+					module = "lazydev.integrations.blink",
+					score_offset = 100,
+				}
+			},
 		},
 
 		-- experimental signature help support
