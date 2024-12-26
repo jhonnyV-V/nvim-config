@@ -45,7 +45,7 @@ return {
 	require 'custom.plugins.color-picker-config',
 	require 'custom.plugins.conform-config',
 	require 'custom.plugins.dabbod-ui-config',
-	require 'custom.plugins.dev-present-nvim',
+	require 'custom.plugins.present-nvim-config',
 	require 'custom.plugins.fugitive',
 	require 'custom.plugins.harpoon-config',
 	require 'custom.plugins.lazygit-config',
