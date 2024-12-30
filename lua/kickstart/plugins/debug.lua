@@ -88,11 +88,18 @@ return {
 		dap.listeners.before.event_terminated['dapui_config'] = dapui.close
 		dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
-		-- TODO: move this golang specific config to some ft folder or something
 		local dap_go = require 'dap-go'
-		dap_go.setup()
-		vim.keymap.set('n', '<leader>dt', dap_go.debug_test, { desc = 'Debug Go: Debug Test' })
 		-- WARNING: set dlv in path or it will not work
+		dap_go.setup({
+			dap_configurations = {
+				{
+					type = "go",
+					name = "Debug",
+					request = "launch",
+					program = "${file}",
+				},
+			},
+		})
 
 		-- WARNING: this is not working for some reason
 		dap.adapters.godot = {
