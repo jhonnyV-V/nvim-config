@@ -30,6 +30,7 @@ return {
 
 	build = "cargo build --release",
 	version = "*",
+	---@type blink.cmp.Config
 	opts = {
 		keymap = {
 			preset = 'default',
@@ -44,6 +45,14 @@ return {
 			use_nvim_cmp_as_default = true,
 			-- Set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
 			nerd_font_variant = 'mono'
+		},
+
+		completion = {
+			menu = {
+				draw = {
+					treesitter = { 'lsp' },
+				},
+			},
 		},
 
 		snippets = {
