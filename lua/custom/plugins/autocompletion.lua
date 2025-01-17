@@ -64,12 +64,13 @@ return {
 				return require('luasnip').in_snippet()
 			end,
 			jump = function(direction) require('luasnip').jump(direction) end,
+			preset = 'luasnip',
 		},
 
 		-- default list of enabled providers defined so that you can extend it
 		-- elsewhere in your config, without redefining it, via `opts_extend`
 		sources = {
-			default = { 'lazydev', 'lsp', 'path', 'luasnip', 'snippets', 'buffer' },
+			default = { 'lazydev', 'lsp', 'path', 'snippets', 'buffer' },
 			-- optionally disable cmdline completions
 			-- cmdline = {},
 			providers = {
