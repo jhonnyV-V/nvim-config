@@ -5,23 +5,18 @@ return {
 		{
 			'L3MON4D3/LuaSnip',
 			version = 'v2.*',
-			build = (function()
-				-- Build Step is needed for regex support in snippets
-				-- This step is not supported in many windows environments
-				-- Remove the below condition to re-enable on windows
-				if vim.fn.has 'win32' == 1 or vim.fn.executable 'make' == 0 then
-					return
-				end
-				return 'make install_jsregexp'
-			end)(),
 			dependencies = 'rafamadriz/friendly-snippets',
+			config = function()
+				require("luasnip.loaders.from_vscode").lazy_load()
+			end,
+			build = "make install_jsregexp"
 		},
 		{
 			"folke/lazydev.nvim",
 			ft = "lua",
 			opts = {
 				library = {
-					{ path = "lazy.nvim", words = { "Lazy" } },
+					{ path = "lazy.nvim",          words = { "Lazy" } },
 					{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
 				},
 			},
@@ -56,14 +51,14 @@ return {
 		},
 
 		snippets = {
-			expand = function(snippet) require('luasnip').lsp_expand(snippet) end,
-			active = function(filter)
-				if filter and filter.direction then
-					return require('luasnip').jumpable(filter.direction)
-				end
-				return require('luasnip').in_snippet()
-			end,
-			jump = function(direction) require('luasnip').jump(direction) end,
+			-- expand = function(snippet) require('luasnip').lsp_expand(snippet) end,
+			-- active = function(filter)
+			-- 	if filter and filter.direction then
+			-- 		return require('luasnip').jumpable(filter.direction)
+			-- 	end
+			-- 	return require('luasnip').in_snippet()
+			-- end,
+			-- jump = function(direction) require('luasnip').jump(direction) end,
 			preset = 'luasnip',
 		},
 
@@ -78,7 +73,8 @@ return {
 					name = "LazyDev",
 					module = "lazydev.integrations.blink",
 					score_offset = 100,
-				}
+				},
+				-- dadbod = { name = "Dadbod", module = "vim_dadbod_completion.blink" },
 			},
 		},
 
