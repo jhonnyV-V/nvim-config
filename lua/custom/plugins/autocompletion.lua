@@ -43,11 +43,11 @@ return {
 		},
 
 		completion = {
-			menu = {
-				draw = {
-					treesitter = { 'lsp' },
-				},
-			},
+			-- menu = {
+			-- 	draw = {
+			-- 		treesitter = { 'lsp' },
+			-- 	},
+			-- },
 		},
 
 		snippets = {
