@@ -46,6 +46,19 @@ return {
 		completion = {
 			menu = {
 				draw = {
+					columns = {
+						{
+							"label",
+							"label_description",
+							gap = 1,
+						},
+						{
+							gap = 1,
+							"kind",
+							"kind_icon",
+							"source_name",
+						}
+					},
 					components = {
 						kind_icon = {
 							ellipsis = false,
@@ -58,7 +71,7 @@ return {
 										icon = dev_icon
 									end
 								else
-									icon = require("lspkind").symbolic(ctx.kind, {
+									icon = lspkind.symbolic(ctx.kind, {
 										mode = "symbol",
 									})
 								end
