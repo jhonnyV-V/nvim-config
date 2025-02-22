@@ -50,6 +50,7 @@ return {
 	require 'custom.plugins.harpoon-config',
 	-- require 'custom.plugins.image-config',
 	require 'custom.plugins.lazygit-config',
+	require 'custom.plugins.llama-nvim-config',
 	require 'custom.plugins.lsp',
 	require 'custom.plugins.markdown-live',
 	require 'custom.plugins.markdown',
