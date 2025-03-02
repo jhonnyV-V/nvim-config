@@ -4,8 +4,8 @@ return {
 	branch = "chore_configurable_keymaps",
 	init = function()
 		vim.g.llama_config = {
-			accept_full_keymap = "<C-g>",
-			accept_line_keymap = "<C-S-g>",
+			keymap_accept_full = "<C-g>",
+			keymap_accept_line = "<C-S-g>",
 		}
 	end,
 	config = function()
