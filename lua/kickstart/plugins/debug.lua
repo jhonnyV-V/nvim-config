@@ -6,6 +6,19 @@
 -- be extended to other languages as well. That's why it's called
 -- kickstart.nvim and not kitchen-sink.nvim ;)
 
+--- Gets a path to a package in the Mason registry.
+--- Prefer this to `get_package`, since the package might not always be
+--- available yet and trigger errors.
+---@param pkg string
+---@param path? string
+local function get_pkg_path(pkg, path)
+	pcall(require, 'mason')
+	local root = vim.env.MASON or (vim.fn.stdpath('data') .. '/mason')
+	path = path or ''
+	local ret = root .. '/packages/' .. pkg .. '/' .. path
+	return ret
+end
+
 return {
 	'mfussenegger/nvim-dap',
 	dependencies = {
@@ -18,8 +31,13 @@ return {
 		'williamboman/mason.nvim',
 		'jay-babu/mason-nvim-dap.nvim',
 
-		-- Add your own debuggers here
 		'leoluz/nvim-dap-go',
+
+		{
+			'microsoft/vscode-js-debug',
+			version = "1.x",
+			build = "npm i && npm run compile vsDebugServerBundle && mv dist out"
+		},
 	},
 	config = function()
 		local dap = require 'dap'
@@ -102,18 +120,101 @@ return {
 		})
 
 		-- WARNING: this is not working for some reason
-		dap.adapters.godot = {
-			type = 'server',
-			host = '127.0.0.1',
-			port = 6005,
-		}
+
+		-- dap.adapters.godot = {
+		-- }
 		dap.configurations.gdscript = {
 			{
-				type = 'godot',
+				type = 'server',
+				host = '127.0.0.1',
+				port = 6005,
+				-- type = 'godot',
 				name = 'Launch Main Scene',
 				request = 'launch',
 				project = '${workspaceFolder}',
 			},
 		}
+
+		local js_langs = { 'javascript', 'typescript', 'typescriptreact', 'javascriptreact' }
+
+		require('dap').adapters['pwa-node'] = {
+			type = 'server',
+			host = 'localhost',
+			port = '${port}',
+			executable = {
+				command = 'node',
+				args = {
+					get_pkg_path('js-debug-adapter', '/js-debug/src/dapDebugServer.js'),
+					'${port}',
+				},
+			},
+		}
+
+		for _, lang in ipairs(js_langs) do
+			dap.configurations[lang] = {
+				{
+					type = 'pwa-node',
+					-- type = 'node2',
+					request = 'launch',
+					program = '${file}',
+					name = 'Launch to Node app',
+					cwd = '${workspaceFolder}',
+					restart = true,
+					sourceMaps = true,
+					port = 9222,
+					resolveSourceMapLocations = { "${workspaceFolder}/**", "!**/node_modules/**" },
+					-- path to src in vite based projects (and most other projects as well)
+					-- cwd = "${workspaceFolder}/src",
+					-- we don't want to debug code inside node_modules, so skip it!
+					skipFiles = { "${workspaceFolder}/node_modules/**/*.js" },
+				},
+				{
+					type = 'pwa-node',
+					-- type = 'node2',
+					request = 'attach',
+					name = 'Attach to Node app',
+					address = '127.0.0.1',
+					port = 9229,
+					cwd = '${workspaceFolder}',
+					restart = true,
+					sourceMaps = true,
+					resolveSourceMapLocations = { "${workspaceFolder}/**", "!**/node_modules/**" },
+					-- processId = require 'dap.utils'.pick_process,
+					-- path to src in vite based projects (and most other projects as well)
+					-- cwd = "${workspaceFolder}/src",
+					-- we don't want to debug code inside node_modules, so skip it!
+					skipFiles = { "${workspaceFolder}/node_modules/**/*.js" },
+
+				},
+				{
+					-- use nvim-dap-vscode-js's pwa-chrome debug adapter
+					type = "pwa-chrome",
+					request = "launch",
+					-- name of the debug action
+					name = "Launch Chrome to debug client side code",
+					-- default vite dev server url
+					url = "http://localhost:5173",
+					-- for TypeScript/Svelte
+					sourceMaps = true,
+					webRoot = "${workspaceFolder}/src",
+					protocol = "inspector",
+					port = 9222,
+					-- skip files from vite's hmr
+					skipFiles = { "**/node_modules/**/*", "**/@vite/*", "**/src/client/*", "**/src/*" },
+				},
+				-- only if language is javascript, offer this debug action
+				lang == "javascript" and {
+					-- use nvim-dap-vscode-js's pwa-node debug adapter
+					type = "pwa-node",
+					-- launch a new process to attach the debugger to
+					request = "launch",
+					-- name of the debug action you have to select for this config
+					name = "Launch file in new node process",
+					-- launch current file
+					program = "${file}",
+					cwd = "${workspaceFolder}",
+				} or nil,
+			}
+		end
 	end,
 }
