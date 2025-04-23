@@ -32,12 +32,24 @@ return {
 		'jay-babu/mason-nvim-dap.nvim',
 
 		'leoluz/nvim-dap-go',
-
-		{
-			'microsoft/vscode-js-debug',
-			version = "1.x",
-			build = "npm i && npm run compile vsDebugServerBundle && mv dist out"
-		},
+	},
+	lazy = true,
+	keys = {
+		-- Basic debugging keymaps, feel free to change to your liking!
+		{ '<F5>',       function() require('dap').continue() end,                                            { desc = 'Debug: Start/Continue' } },
+		{ '<F1>',       function() require('dap').step_into() end,                                           { desc = 'Debug: Step Into' } },
+		{ '<F2>',       function() require('dap').step_over() end,                                           { desc = 'Debug: Step Over' } },
+		{ '<F3>',       function() require('dap').step_out() end,                                            { desc = 'Debug: Step Out' } },
+		{ '<leader>td', function() require('dap').terminate() end,                                           { desc = 'Debug: Terminate' } },
+		{ '<leader>b',  function() require('dap').toggle_breakpoint() end,                                   { desc = 'Debug: Toggle Breakpoint' } },
+		{ '<leader>B',  function() require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ') end, { desc = 'Debug: Set Breakpoint' } },
+		{ '<space>?',   function() require('dapui').eval(nil, { enter = true }) end,                         { desc = 'Debug: Evaluate Var Under Cursor' } },
+		-- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
+		{ '<F7>', function()
+			require('dapui').toggle()
+		end,
+			{ desc = 'Debug: See last session result.' }
+		}
 	},
 	config = function()
 		local dap = require 'dap'
@@ -59,20 +71,6 @@ return {
 				'delve',
 			},
 		}
-
-		-- Basic debugging keymaps, feel free to change to your liking!
-		vim.keymap.set('n', '<F5>', dap.continue, { desc = 'Debug: Start/Continue' })
-		vim.keymap.set('n', '<F1>', dap.step_into, { desc = 'Debug: Step Into' })
-		vim.keymap.set('n', '<F2>', dap.step_over, { desc = 'Debug: Step Over' })
-		vim.keymap.set('n', '<F3>', dap.step_out, { desc = 'Debug: Step Out' })
-		vim.keymap.set('n', '<leader>td', dap.terminate, { desc = 'Debug: Terminate' })
-		vim.keymap.set('n', '<leader>b', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
-		vim.keymap.set('n', '<leader>B', function()
-			dap.set_breakpoint(vim.fn.input 'Breakpoint condition: ')
-		end, { desc = 'Debug: Set Breakpoint' })
-		vim.keymap.set('n', '<space>?', function()
-			dapui.eval(nil, { enter = true })
-		end, { desc = 'Debug: Evaluate Var Under Cursor' })
 
 		-- Dap UI setup
 		-- For more information, see |:help nvim-dap-ui|
@@ -99,8 +97,6 @@ return {
 			show_stop_reason = true,
 		}
 
-		-- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-		vim.keymap.set('n', '<F7>', dapui.toggle, { desc = 'Debug: See last session result.' })
 
 		dap.listeners.after.event_initialized['dapui_config'] = dapui.open
 		dap.listeners.before.event_terminated['dapui_config'] = dapui.close
@@ -173,13 +169,13 @@ return {
 					-- type = 'node2',
 					request = 'attach',
 					name = 'Attach to Node app',
-					address = '127.0.0.1',
-					port = 9229,
+					--- address = '127.0.0.1',
+					-- port = 9229,
 					cwd = '${workspaceFolder}',
 					restart = true,
 					sourceMaps = true,
 					resolveSourceMapLocations = { "${workspaceFolder}/**", "!**/node_modules/**" },
-					-- processId = require 'dap.utils'.pick_process,
+					processId = require 'dap.utils'.pick_process,
 					-- path to src in vite based projects (and most other projects as well)
 					-- cwd = "${workspaceFolder}/src",
 					-- we don't want to debug code inside node_modules, so skip it!
