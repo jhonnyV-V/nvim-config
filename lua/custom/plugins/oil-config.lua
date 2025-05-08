@@ -45,6 +45,15 @@ return {
 			-- it will use the mapping at require("oil.actions").<name>
 			-- Set to `false` to remove a keymap
 			-- See :help oil-actions for a list of all available actions
+			lsp_file_methods = {
+				-- Enable or disable LSP file operations
+				enabled = true,
+				-- Time to wait for LSP file operations to complete before skipping
+				timeout_ms = 1000,
+				-- Set to true to autosave buffers that are updated with LSP willRenameFiles
+				-- Set to "unmodified" to only save unmodified buffers
+				autosave_changes = false,
+			},
 			keymaps = {
 				['g?'] = 'actions.show_help',
 				['<CR>'] = 'actions.select',
@@ -53,7 +62,7 @@ return {
 				['<C-t>'] = 'actions.select_tab',
 				['<C-p>'] = 'actions.preview',
 				['<C-c>'] = 'actions.close',
-				['<C-l>'] = 'actions.refresh',
+				['<C-r>'] = 'actions.refresh',
 				['-'] = 'actions.parent',
 				['_'] = 'actions.open_cwd',
 				['`'] = 'actions.cd',
@@ -64,7 +73,7 @@ return {
 				['g\\'] = 'actions.toggle_trash',
 			},
 			-- Set to false to disable all of the above keymaps
-			use_default_keymaps = true,
+			use_default_keymaps = false,
 			view_options = {
 				-- Show files and directories that start with "."
 				show_hidden = true,
