@@ -37,6 +37,7 @@ return {
 	require 'kickstart.plugins.indent_line',
 
 	require 'custom.plugins.autocompletion',
+	require 'custom.plugins.blame',
 	require 'custom.plugins.cloak-config',
 	require 'custom.plugins.codeium-config',
 	require 'custom.plugins.codesnaps-config',
