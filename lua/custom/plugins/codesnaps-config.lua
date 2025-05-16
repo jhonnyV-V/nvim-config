@@ -7,7 +7,7 @@ local function getSavePath()
 end
 return {
 	'mistricky/codesnap.nvim',
-	build = 'make',
+	build = 'make build_generator',
 	cmd = {
 		'CodeSnap', --Take a snapshot of the currently selected code and copy the snapshot into the clipboard
 		'CodeSnapSave', --Save the snapshot of the currently selected code and save it on the disk
