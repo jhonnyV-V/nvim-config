@@ -13,6 +13,7 @@ return {
 		'CodeSnapSave', --Save the snapshot of the currently selected code and save it on the disk
 		'CodeSnapHighlight', -- Take code snapshot with highlights code blocks and copy it into the clipboard
 		'CodeSnapSaveHighlight', -- Take code snapshot with highlights code blocks and save it somewhere
+		'CodeSnapASCII', --Take a snapshot of the currently selected code as ascii and copy the snapshot into the clipboard
 	},
 	lazy = true,
 	opts = {
