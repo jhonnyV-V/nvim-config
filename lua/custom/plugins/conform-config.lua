@@ -7,7 +7,7 @@ return { -- Autoformat
 			lsp_format = 'fallback',
 		},
 		format_on_save = {
-			timeout_ms = 500,
+			timeout_ms = 1500,
 			lsp_fallback = true,
 		},
 		formatters_by_ft = {
@@ -15,8 +15,12 @@ return { -- Autoformat
 			go = { 'goimports', 'gofmt' },
 			-- python = { "isort", "black" },
 			javascript = { 'prettierd', 'eslint_d' },
-			html = { 'prettierd', 'prettier' },
-			templ = { 'prettierd', 'prettier' },
+			typescript = { 'prettierd', 'eslint_d' },
+			javascriptreact = { 'prettierd', 'eslint_d' },
+			typescriptreact = { 'prettierd', 'eslint_d' },
+			svelte = { 'prettierd', 'eslint_d' },
+			html = { 'prettierd', 'eslint_d' },
+			templ = { 'prettierd', 'eslint_d' },
 		},
 	},
 	keys = {
@@ -26,7 +30,7 @@ return { -- Autoformat
 				local conf = require 'conform'
 				conf.format()
 			end,
-			desc = 'Lsp Format',
+			desc = 'Conform: Format',
 		},
 	},
 }
