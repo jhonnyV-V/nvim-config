@@ -2,7 +2,7 @@
 return {
 	'ggml-org/llama.vim',
 	-- 'jhonnyV-V/llama.vim',
-	branch = 'chore_configurable_keymaps',
+	-- branch = 'chore_configurable_keymaps',
 	init = function()
 		vim.g.llama_config = {
 			keymap_accept_full = '<C-g>',
