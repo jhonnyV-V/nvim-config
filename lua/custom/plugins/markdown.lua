@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
 	'OXY2DEV/markview.nvim',
 	cmd = { 'Markview' },
@@ -11,6 +12,6 @@ return {
 	ft = { 'markdown' },
 	lazy = true,
 	keys = {
-		{'<leader>m', '<CMD>Markview<CR>', desc = 'MarkView Toggle'},
+		{ '<leader>m', '<CMD>Markview<CR>', desc = 'MarkView Toggle' },
 	},
 }

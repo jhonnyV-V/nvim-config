@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return { -- Highlight todo, notes, etc in comments
 	'folke/todo-comments.nvim',
 	event = 'VimEnter',
@@ -21,7 +22,7 @@ return { -- Highlight todo, notes, etc in comments
 		},
 		{
 			'<leader>st',
-			"<cmd>TodoTelescope<CR>",
+			'<cmd>TodoTelescope<CR>',
 			desc = 'Telescope: TODO comments',
 		},
 	},

@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
 	'ziontee113/color-picker.nvim',
 	lazy = true,
@@ -17,6 +18,9 @@ return {
 		['border_highlight_group'] = 'FloatBorder', -- default
 		['text_highlight_group'] = 'Normal', --default
 	},
+	cmd = {
+		'PickColor',
+	},
 	config = function()
 		-- vim.keymap.set("i", "<C-c>", "<cmd>PickColorInsert<cr>", opts)
 
@@ -25,6 +29,6 @@ return {
 		vim.cmd [[hi FloatBorder guibg=NONE]] -- if you don't want weird border background colors around the popup.
 	end,
 	keys = {
-		{'<leader>pc', '<cmd>PickColor<cr>', noremap = true, silent = true, desc = 'Color Picker: Open ColorPicker'},
+		{ '<leader>pc', '<cmd>PickColor<cr>', noremap = true, silent = true, desc = 'Color Picker: Open ColorPicker' },
 	},
 }

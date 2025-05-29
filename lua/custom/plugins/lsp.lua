@@ -1,3 +1,4 @@
+---@type LazyPluginSpec
 return {
 	'neovim/nvim-lspconfig',
 	event = 'BufEnter',
@@ -109,7 +110,6 @@ return {
 			ts_ls = {},
 			eslint = {},
 			cmake = {},
-			-- golangci_lint = {},
 			golangci_lint_ls = {},
 			gopls = {},
 			jedi_language_server = {},
@@ -121,11 +121,11 @@ return {
 				capabilities = capabilities,
 			},
 			tailwindcss = {
-				filetypes = { "html", "templ", "astro", "javascript", "typescript", "react" },
+				filetypes = { 'html', 'templ', 'astro', 'javascript', 'typescript', 'react' },
 				settings = {
 					tailwindCSS = {
 						includeLanguages = {
-							templ = "html",
+							templ = 'html',
 						},
 					},
 				},
@@ -134,11 +134,8 @@ return {
 				capabilities = capabilities,
 			},
 			html = {
-				filetypes = { "html", "templ" },
+				filetypes = { 'html', 'templ' },
 			},
-			-- htmx = {
-			-- 	filetypes = { "html", "templ" },
-			-- },
 			docker_compose_language_service = {},
 			zk = {},
 			yamlls = {},
@@ -166,7 +163,7 @@ return {
 							library = {
 								'${3rd}/luv/library',
 								unpack(vim.api.nvim_get_runtime_file('lua', true)),
-							}
+							},
 						},
 						completion = {
 							callSnippet = 'Replace',
