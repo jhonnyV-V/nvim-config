@@ -24,8 +24,6 @@ vim.keymap.set('n', '<leader>D', [["_D]], { desc = 'Delete line to the void (_ r
 
 -- vim.keymap.set('n', '<leader>tm', '<cmd>silent !tmux neww tmux-sessionizer<CR>', { desc = 'Open Tmux-sessionizer' })
 
-vim.keymap.set('n', '<leader>f', vim.lsp.buf.format, { desc = 'Lsp Format' })
-
 -- Quick fix navigation
 vim.keymap.set('n', '<C-j>', '<cmd>cnext<CR>zz', { desc = 'Next QuickFix Item' })
 vim.keymap.set('n', '<C-k>', '<cmd>cprev<CR>zz', { desc = 'Previous QuickFix Item' })
@@ -42,11 +40,11 @@ vim.keymap.set('n', '<leader>ex', '<cmd>!chmod +x %<CR>', {
 
 -- Diagnostic keymaps
 -- TODO: check for duplication
-vim.keymap.set('n', ']d', function ()
-	vim.diagnostic.jump({count=-1, float=true})
+vim.keymap.set('n', ']d', function()
+	vim.diagnostic.jump { count = -1, float = true }
 end, { desc = 'Go to previous [D]iagnostic message' })
-vim.keymap.set('n', '[d', function ()
-	vim.diagnostic.jump({count=1, float=true})
+vim.keymap.set('n', '[d', function()
+	vim.diagnostic.jump { count = 1, float = true }
 end, { desc = 'Go to next [D]iagnostic message' })
 vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { desc = 'Show diagnostic [E]rror messages' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
