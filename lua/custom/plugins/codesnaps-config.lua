@@ -21,7 +21,7 @@ return {
 		title = 'CodeSnap.nvim',
 		code_font_family = 'CaskaydiaCove Nerd Font',
 		watermark_font_family = 'Pacifico',
-		watermark = (vim.fn.getcwd():gsub(os.getenv 'HOME', '~')), -- (Optional) you can custom your own watermark, but if you don't like it, just set it to ""
+		watermark = "", --(vim.fn.getcwd():gsub(os.getenv 'HOME', '~')), -- (Optional) you can custom your own watermark, but if you don't like it, just set it to ""
 		bg_theme = 'default', -- (optional) bamboo, sea, peach, grape, dusk, summer, default, or #RRGGBB
 		breadcrumbs_separator = '/',
 		has_breadcrumbs = false,
