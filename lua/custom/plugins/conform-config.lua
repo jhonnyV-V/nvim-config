@@ -7,7 +7,7 @@ return { -- Autoformat
 			lsp_format = 'fallback',
 		},
 		format_on_save = {
-			timeout_ms = 1500,
+			timeout_ms = 4000,
 			lsp_fallback = true,
 		},
 		formatters_by_ft = {

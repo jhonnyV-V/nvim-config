@@ -1,7 +1,6 @@
 ---@type LazyPluginSpec
 return {
 	'neovim/nvim-lspconfig',
-	event = 'BufEnter',
 	dependencies = {
 		'williamboman/mason.nvim',
 		'williamboman/mason-lspconfig.nvim',
