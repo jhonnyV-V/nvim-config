@@ -19,7 +19,7 @@ return { -- Autoformat
 			javascriptreact = { 'prettierd', 'eslint_d' },
 			typescriptreact = { 'prettierd', 'eslint_d' },
 			svelte = { 'prettierd', 'eslint_d' },
-			html = { 'prettierd', 'eslint_d' },
+			-- html = { 'prettierd', 'eslint_d' },
 			templ = { 'prettierd', 'eslint_d' },
 		},
 	},
