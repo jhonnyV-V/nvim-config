@@ -13,7 +13,7 @@
 ---@param path? string
 local function get_pkg_path(pkg, path)
 	pcall(require, 'mason')
-	local root = vim.env.MASON or (vim.fn.stdpath('data') .. '/mason')
+	local root = vim.env.MASON or (vim.fn.stdpath 'data' .. '/mason')
 	path = path or ''
 	local ret = root .. '/packages/' .. pkg .. '/' .. path
 	return ret
@@ -36,20 +36,70 @@ return {
 	lazy = true,
 	keys = {
 		-- Basic debugging keymaps, feel free to change to your liking!
-		{ '<F5>',       function() require('dap').continue() end,                                            { desc = 'Debug: Start/Continue' } },
-		{ '<F1>',       function() require('dap').step_into() end,                                           { desc = 'Debug: Step Into' } },
-		{ '<F2>',       function() require('dap').step_over() end,                                           { desc = 'Debug: Step Over' } },
-		{ '<F3>',       function() require('dap').step_out() end,                                            { desc = 'Debug: Step Out' } },
-		{ '<leader>td', function() require('dap').terminate() end,                                           { desc = 'Debug: Terminate' } },
-		{ '<leader>b',  function() require('dap').toggle_breakpoint() end,                                   { desc = 'Debug: Toggle Breakpoint' } },
-		{ '<leader>B',  function() require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ') end, { desc = 'Debug: Set Breakpoint' } },
-		{ '<space>?',   function() require('dapui').eval(nil, { enter = true }) end,                         { desc = 'Debug: Evaluate Var Under Cursor' } },
+		{
+			'<F5>',
+			function()
+				require('dap').continue()
+			end,
+			desc = 'Debug: Start/Continue',
+		},
+		{
+			'<F1>',
+			function()
+				require('dap').step_into()
+			end,
+			desc = 'Debug: Step Into',
+		},
+		{
+			'<F2>',
+			function()
+				require('dap').step_over()
+			end,
+			desc = 'Debug: Step Over',
+		},
+		{
+			'<F3>',
+			function()
+				require('dap').step_out()
+			end,
+			desc = 'Debug: Step Out',
+		},
+		{
+			'<leader>td',
+			function()
+				require('dap').terminate()
+			end,
+			desc = 'Debug: Terminate',
+		},
+		{
+			'<leader>b',
+			function()
+				require('dap').toggle_breakpoint()
+			end,
+			desc = 'Debug: Toggle Breakpoint',
+		},
+		{
+			'<leader>B',
+			function()
+				require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
+			end,
+			desc = 'Debug: Set Breakpoint',
+		},
+		{
+			'<space>?',
+			function()
+				require('dapui').eval(nil, { enter = true })
+			end,
+			desc = 'Debug: Evaluate Var Under Cursor',
+		},
 		-- Toggle to see last session result. Without this, you can't see session output in case of unhandled exception.
-		{ '<F7>', function()
-			require('dapui').toggle()
-		end,
-			{ desc = 'Debug: See last session result.' }
-		}
+		{
+			'<F7>',
+			function()
+				require('dapui').toggle()
+			end,
+			{ desc = 'Debug: See last session result.' },
+		},
 	},
 	config = function()
 		local dap = require 'dap'
@@ -97,23 +147,22 @@ return {
 			show_stop_reason = true,
 		}
 
-
 		dap.listeners.after.event_initialized['dapui_config'] = dapui.open
 		dap.listeners.before.event_terminated['dapui_config'] = dapui.close
 		dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
 		local dap_go = require 'dap-go'
 		-- WARNING: set dlv in path or it will not work
-		dap_go.setup({
+		dap_go.setup {
 			dap_configurations = {
 				{
-					type = "go",
-					name = "Debug",
-					request = "launch",
-					program = "${file}",
+					type = 'go',
+					name = 'Debug',
+					request = 'launch',
+					program = '${file}',
 				},
 			},
-		})
+		}
 
 		-- WARNING: this is not working for some reason
 
@@ -158,11 +207,11 @@ return {
 					restart = true,
 					sourceMaps = true,
 					port = 9222,
-					resolveSourceMapLocations = { "${workspaceFolder}/**", "!**/node_modules/**" },
+					resolveSourceMapLocations = { '${workspaceFolder}/**', '!**/node_modules/**' },
 					-- path to src in vite based projects (and most other projects as well)
 					-- cwd = "${workspaceFolder}/src",
 					-- we don't want to debug code inside node_modules, so skip it!
-					skipFiles = { "${workspaceFolder}/node_modules/**/*.js" },
+					skipFiles = { '${workspaceFolder}/node_modules/**/*.js' },
 				},
 				{
 					type = 'pwa-node',
@@ -174,42 +223,43 @@ return {
 					cwd = '${workspaceFolder}',
 					restart = true,
 					sourceMaps = true,
-					resolveSourceMapLocations = { "${workspaceFolder}/**", "!**/node_modules/**" },
-					processId = require 'dap.utils'.pick_process,
+					resolveSourceMapLocations = { '${workspaceFolder}/**', '!**/node_modules/**' },
+					processId = require('dap.utils').pick_process,
 					-- path to src in vite based projects (and most other projects as well)
 					-- cwd = "${workspaceFolder}/src",
 					-- we don't want to debug code inside node_modules, so skip it!
-					skipFiles = { "${workspaceFolder}/node_modules/**/*.js" },
-
+					skipFiles = { '${workspaceFolder}/node_modules/**/*.js' },
 				},
 				{
 					-- use nvim-dap-vscode-js's pwa-chrome debug adapter
-					type = "pwa-chrome",
-					request = "launch",
+					type = 'pwa-chrome',
+					request = 'launch',
 					-- name of the debug action
-					name = "Launch Chrome to debug client side code",
+					name = 'Launch Chrome to debug client side code',
 					-- default vite dev server url
-					url = "http://localhost:5173",
+					url = 'http://localhost:5173',
 					-- for TypeScript/Svelte
 					sourceMaps = true,
-					webRoot = "${workspaceFolder}/src",
-					protocol = "inspector",
+					webRoot = '${workspaceFolder}/src',
+					protocol = 'inspector',
 					port = 9222,
 					-- skip files from vite's hmr
-					skipFiles = { "**/node_modules/**/*", "**/@vite/*", "**/src/client/*", "**/src/*" },
+					skipFiles = { '**/node_modules/**/*', '**/@vite/*', '**/src/client/*', '**/src/*' },
 				},
 				-- only if language is javascript, offer this debug action
-				lang == "javascript" and {
-					-- use nvim-dap-vscode-js's pwa-node debug adapter
-					type = "pwa-node",
-					-- launch a new process to attach the debugger to
-					request = "launch",
-					-- name of the debug action you have to select for this config
-					name = "Launch file in new node process",
-					-- launch current file
-					program = "${file}",
-					cwd = "${workspaceFolder}",
-				} or nil,
+				lang == 'javascript'
+						and {
+							-- use nvim-dap-vscode-js's pwa-node debug adapter
+							type = 'pwa-node',
+							-- launch a new process to attach the debugger to
+							request = 'launch',
+							-- name of the debug action you have to select for this config
+							name = 'Launch file in new node process',
+							-- launch current file
+							program = '${file}',
+							cwd = '${workspaceFolder}',
+						}
+					or nil,
 			}
 		end
 	end,
