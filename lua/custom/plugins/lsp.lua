@@ -198,7 +198,8 @@ return {
 					-- by the server configuration above. Useful when disabling
 					-- certain features of an LSP (for example, turning off formatting for tsserver)
 					server.capabilities = vim.tbl_deep_extend('force', {}, capabilities, server.capabilities or {})
-					require('lspconfig')[server_name].setup(server)
+					vim.lsp.config(server_name, server)
+					vim.lsp.enable(server_name)
 				end,
 			},
 		}
@@ -210,6 +211,6 @@ return {
 		if vim.fn.has 'win32' == 1 then
 			gdscriptConfig.cmd = { 'ncat', 'localhost', os.getenv 'GDScript_Port' or 6005 }
 		end
-		require('lspconfig').gdscript.setup(gdscriptConfig)
+		vim.lsp.config('gdscript', gdscriptConfig)
 	end,
 }
