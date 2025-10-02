@@ -5,6 +5,21 @@ return {
 		'williamboman/mason.nvim',
 		'williamboman/mason-lspconfig.nvim',
 		'WhoIsSethDaniel/mason-tool-installer.nvim',
+		{
+			'Issafalcon/lsp-overloads.nvim',
+			cmd =  {
+				'LspOverloadsSignature',
+				'LspOverloadsSignatureAutoToggle',
+			},
+
+			--keybinds for modal
+			-- next_signature = "<C-j>"
+			-- previous_signature = "<C-k>"
+			-- next_parameter = "<C-l>"
+			-- previous_parameter = "<C-h>"
+			-- close_signature = "<A-s>"
+
+		},
 
 		{ 'j-hui/fidget.nvim', opts = {} },
 	},
@@ -14,8 +29,8 @@ return {
 			callback = function(event)
 				-- In this case, we create a function that lets us more easily define mappings specific
 				-- for LSP related items. It sets the mode, buffer and description for us each time.
-				local map = function(keys, func, desc)
-					vim.keymap.set('n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
+				local map = function(keys, func, desc, mode)
+					vim.keymap.set(mode or 'n', keys, func, { buffer = event.buf, desc = 'LSP: ' .. desc })
 				end
 
 				-- Jump to the definition of the word under your cursor.
@@ -43,10 +58,6 @@ return {
 				--  Similar to document symbols, except searches over your whole project.
 				map('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
 
-				-- Rename the variable under your cursor
-				--  Most Language Servers support renaming across files, etc.
-				map('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-
 				-- Execute a code action, usually your cursor needs to be on top of an error
 				-- or a suggestion from your LSP for this to activate.
 				map('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
@@ -59,12 +70,19 @@ return {
 				--  For example, in C this would take you to the header
 				map('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
 
+				local client = vim.lsp.get_client_by_id(event.data.client_id)
+
+				if client and client.server_capabilities.signatureHelpProvider then
+				---@diagnostic disable-next-line: missing-fields
+					require('lsp-overloads').setup(client, {})
+					map('<leader>so', ':LspOverloadsSignature<CR>', "[S]ignature [O]verlode")
+				end
+
 				-- The following two autocommands are used to highlight references of the
 				-- word under your cursor when your cursor rests there for a little while.
 				--    See `:help CursorHold` for information about when this is executed
 				--
 				-- When you move your cursor, the highlights will be cleared (the second autocommand).
-				local client = vim.lsp.get_client_by_id(event.data.client_id)
 				if client and client.server_capabilities.documentHighlightProvider then
 					vim.api.nvim_create_autocmd({ 'CursorHold', 'CursorHoldI' }, {
 						buffer = event.buf,
