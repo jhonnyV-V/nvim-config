@@ -190,6 +190,7 @@ return {
 					},
 				},
 			},
+			ols = {}
 		}
 
 		-- Ensure the servers and tools above are installed

@@ -66,6 +66,7 @@ return { -- Highlight, edit, and navigate code
 				'vimdoc',
 				'query',
 				'templ',
+				'odin'
 			},
 			-- Autoinstall languages that are not installed
 			auto_install = true,
