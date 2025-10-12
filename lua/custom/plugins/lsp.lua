@@ -124,6 +124,7 @@ return {
 			-- tsserver = {},
 			--
 
+			bashls = {},
 			ts_ls = {},
 			eslint = {},
 			cmake = {},
@@ -190,6 +191,7 @@ return {
 					},
 				},
 			},
+			stylua = {},
 			ols = {}
 		}
 
