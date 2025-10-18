@@ -148,6 +148,7 @@ return {
 				},
 			},
 		}
+		vim.fn.sign_define('DapBreakpoint', { text = '🐞' })
 
 		require('nvim-dap-virtual-text').setup {
 			enable_commands = true,
