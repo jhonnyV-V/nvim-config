@@ -31,7 +31,7 @@ return {
 		'williamboman/mason.nvim',
 		'jay-babu/mason-nvim-dap.nvim',
 
-		'leoluz/nvim-dap-go',
+		-- 'leoluz/nvim-dap-go',
 	},
 	lazy = true,
 	keys = {
@@ -104,8 +104,9 @@ return {
 	config = function()
 		local dap = require 'dap'
 		local dapui = require 'dapui'
+		local mason_nvim_dap = require 'mason-nvim-dap'
 
-		require('mason-nvim-dap').setup {
+		mason_nvim_dap.setup {
 			-- Makes a best effort to setup the various debuggers with
 			-- reasonable debug configurations
 			automatic_setup = true,
@@ -113,7 +114,11 @@ return {
 
 			-- You can provide additional configuration to the handlers,
 			-- see mason-nvim-dap README for more information
-			handlers = {},
+			handlers = {
+				function(config)
+					mason_nvim_dap.default_setup(config)
+				end,
+			},
 
 			-- You'll need to check that you have the required things installed
 			-- online, please don't ask me how to install them :)
@@ -153,16 +158,40 @@ return {
 		dap.listeners.before.event_terminated['dapui_config'] = dapui.close
 		dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
-		local dap_go = require 'dap-go'
-		-- WARNING: set dlv in path or it will not work
-		dap_go.setup {
-			dap_configurations = {
-				{
-					type = 'go',
-					name = 'Debug',
-					request = 'launch',
-					program = '${file}',
-				},
+		-- local dap_go = require 'dap-go'
+		-- -- WARNING: set dlv in path or it will not work
+		-- dap_go.setup {
+		-- 	dap_configurations = {
+		-- 		{
+		-- 			type = 'go',
+		-- 			name = 'Debug',
+		-- 			request = 'launch',
+		-- 			program = '${file}',
+		-- 		},
+		-- 	},
+		-- }
+
+		dap.configurations.go = {
+			{
+				type = 'delve',
+				name = 'Debug',
+				request = 'launch',
+				program = '${file}',
+			},
+			{
+				type = 'delve',
+				name = 'Debug test', -- configuration for debugging test files
+				request = 'launch',
+				mode = 'test',
+				program = '${file}',
+			},
+			-- works with go.mod packages and sub packages
+			{
+				type = 'delve',
+				name = 'Debug test (go.mod)',
+				request = 'launch',
+				mode = 'test',
+				program = './${relativeFileDirname}',
 			},
 		}
 
