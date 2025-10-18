@@ -120,6 +120,7 @@ return {
 			ensure_installed = {
 				-- Update this to ensure that you have the debuggers for the langs you want
 				'delve',
+				'codelldb',
 			},
 		}
 
@@ -181,9 +182,41 @@ return {
 			},
 		}
 
+		dap.configurations.odin = {
+			{
+				type = 'codelldb',
+				host = '127.0.0.1',
+				port = 13500,
+				name = 'Debug Odin',
+				request = 'launch',
+				project = '${workspaceFolder}',
+				program = function()
+					local path = vim.fn.input {
+						prompt = 'Path to executable: ',
+						default = vim.fn.getcwd() .. '/',
+						completion = 'file',
+					}
+					return (path and path ~= '') and path or dap.ABORT
+				end,
+			},
+		}
+
+		dap.adapters.codelldb = {
+			type = 'server',
+			host = '127.0.0.1',
+			port = '${port}',
+			executable = {
+				command = 'codelldb',
+				args = {
+					'--port',
+					'${port}',
+				},
+			},
+		}
+
 		local js_langs = { 'javascript', 'typescript', 'typescriptreact', 'javascriptreact' }
 
-		require('dap').adapters['pwa-node'] = {
+		dap.adapters['pwa-node'] = {
 			type = 'server',
 			host = 'localhost',
 			port = '${port}',
