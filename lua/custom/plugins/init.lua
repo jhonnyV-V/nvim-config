@@ -17,10 +17,10 @@ return {
 	{
 		-- If you want to see what colorschemes are already installed, you can use `:Telescope colorscheme`
 		'folke/tokyonight.nvim',
-		lazy = false,  -- make sure we load this during startup if it is your main colorscheme
+		lazy = false, -- make sure we load this during startup if it is your main colorscheme
 		priority = 1000, -- make sure to load this before all the other start plugins
 		opts = {
-			transparent = vim.g.transparent_enabled
+			transparent = vim.g.transparent_enabled,
 		},
 		config = function()
 			vim.cmd.colorscheme 'tokyonight-storm'
@@ -46,6 +46,7 @@ return {
 	require 'custom.plugins.dabbod-ui-config',
 	require 'custom.plugins.present-nvim-config',
 	-- require 'custom.plugins.sonar-review',
+	require 'custom.plugins.sonar-qube',
 	require 'custom.plugins.fugitive',
 	require 'custom.plugins.harpoon-config',
 	require 'custom.plugins.lazygit-config',
