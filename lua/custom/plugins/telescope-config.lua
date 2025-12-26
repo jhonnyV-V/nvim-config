@@ -63,13 +63,20 @@ return { -- Fuzzy Finder (files, lsp, etc)
 	end,
 	keys = {
 		{
+			'<leader>sf',
+			function()
+				require('telescope.builtin').treesitter()
+			end,
+			desc = 'Telescope: [S]earch [F]unctions',
+		},
+		{
 			'<leader>ps',
 			function()
 				require('telescope.builtin').live_grep {
 					prompt_title = 'Live Grep in Open Files',
 				}
 			end,
-			desc = 'Grep Word',
+			desc = 'Telescope: Live Grep',
 		},
 		{
 			'<leader>gf',
@@ -126,13 +133,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
 				require('telescope.builtin').grep_string()
 			end,
 			desc = 'Telescope: [S]earch current [W]ord',
-		},
-		{
-			'<leader>sg',
-			function()
-				require('telescope.builtin').live_grep()
-			end,
-			desc = 'Telescope: [S]earch by [G]rep',
 		},
 		{
 			'<leader>sd',
