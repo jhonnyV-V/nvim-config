@@ -215,11 +215,10 @@ return {
 		dap.configurations.odin = {
 			{
 				type = 'codelldb',
-				host = '127.0.0.1',
-				port = 13500,
 				name = 'Debug Odin',
 				request = 'launch',
 				project = '${workspaceFolder}',
+				stopOnEntry = false,
 				program = function()
 					local path = vim.fn.input {
 						prompt = 'Path to executable: ',
@@ -233,7 +232,7 @@ return {
 
 		dap.adapters.codelldb = {
 			type = 'server',
-			host = '127.0.0.1',
+			-- host = '127.0.0.1',
 			port = '${port}',
 			executable = {
 				command = 'codelldb',
@@ -282,7 +281,7 @@ return {
 					-- type = 'node2',
 					request = 'attach',
 					name = 'Attach to Node app',
-					--- address = '127.0.0.1',
+					-- address = 'localhost',
 					-- port = 9229,
 					cwd = '${workspaceFolder}',
 					restart = true,
