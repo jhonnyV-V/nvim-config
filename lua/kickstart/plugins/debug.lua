@@ -278,6 +278,19 @@ return {
 				},
 				{
 					type = 'pwa-node',
+					request = 'attach',
+					name = 'Attach to Backend app',
+					cwd = '${workspaceFolder}/backend',
+					restart = true,
+					sourceMaps = true,
+					stopOnEntry = true,
+					resolveSourceMapLocations = { '${workspaceFolder}/backend/**', '!**/node_modules/**' },
+					processId = require('dap.utils').pick_process,
+					protocol = 'inspector',
+					skipFiles = { '${workspaceFolder}/node_modules/**/*.js', '${workspaceFolder}/backend/node_modules/**/*.js' },
+				},
+				{
+					type = 'pwa-node',
 					-- type = 'node2',
 					request = 'attach',
 					name = 'Attach to Node app',
@@ -286,8 +299,10 @@ return {
 					cwd = '${workspaceFolder}',
 					restart = true,
 					sourceMaps = true,
+					stopOnEntry = true,
 					resolveSourceMapLocations = { '${workspaceFolder}/**', '!**/node_modules/**' },
 					processId = require('dap.utils').pick_process,
+					protocol = 'inspector',
 					-- path to src in vite based projects (and most other projects as well)
 					-- cwd = "${workspaceFolder}/src",
 					-- we don't want to debug code inside node_modules, so skip it!
