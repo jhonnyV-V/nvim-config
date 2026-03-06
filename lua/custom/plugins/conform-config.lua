@@ -1,6 +1,9 @@
 ---@type LazyPluginSpec
 return { -- Autoformat
 	'stevearc/conform.nvim',
+	-- event = { 'BufWritePre' },
+	---@module "conform"
+	---@type conform.setupOpts
 	opts = {
 		notify_on_error = true,
 		default_format_opts = {
@@ -21,6 +24,10 @@ return { -- Autoformat
 			svelte = { 'prettierd', 'eslint_d' },
 			-- html = { 'prettierd', 'eslint_d' },
 			templ = { 'prettierd', 'eslint_d' },
+			sql = { 'prettierd' },
+			css = { 'prettierd', 'eslint_d' },
+			graphql = { 'prettierd' },
+			saas = { 'prettierd' }
 		},
 	},
 	keys = {
