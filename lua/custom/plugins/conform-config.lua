@@ -24,7 +24,7 @@ return { -- Autoformat
 			svelte = { 'prettierd', 'eslint_d' },
 			-- html = { 'prettierd', 'eslint_d' },
 			templ = { 'prettierd', 'eslint_d' },
-			sql = { 'prettierd' },
+			sql = { 'prettierd', 'sqlfluff' },
 			css = { 'prettierd', 'eslint_d' },
 			graphql = { 'prettierd' },
 			saas = { 'prettierd' }
