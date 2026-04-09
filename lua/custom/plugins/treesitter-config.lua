@@ -2,6 +2,7 @@
 return { -- Highlight, edit, and navigate code
 	'nvim-treesitter/nvim-treesitter',
 	build = ':TSUpdate',
+	branch = 'main',
 	dependencies = {
 		-- {
 		-- 	'nvim-treesitter/nvim-treesitter-context',
@@ -43,8 +44,7 @@ return { -- Highlight, edit, and navigate code
 	},
 	config = function()
 		-- [[ Configure Treesitter ]] See `:help nvim-treesitter`
-		---@diagnostic disable-next-line: missing-fields
-		require('nvim-treesitter.configs').setup {
+		require('nvim-treesitter').setup {
 			ensure_installed = {
 				'bash',
 				'c',
@@ -66,7 +66,7 @@ return { -- Highlight, edit, and navigate code
 				'vimdoc',
 				'query',
 				'templ',
-				'odin'
+				'odin',
 			},
 			-- Autoinstall languages that are not installed
 			auto_install = true,
