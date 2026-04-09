@@ -1,3 +1,9 @@
+local builtinConfig = {
+	layout_config = {
+		width = 0.99,
+	},
+}
+
 ---@type LazyPluginSpec
 return { -- Fuzzy Finder (files, lsp, etc)
 	'nvim-telescope/telescope.nvim',
@@ -36,11 +42,13 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		-- You can put your default mappings / updates / etc. in here
 		--  All the info you're looking for is in `:help telescope.setup()`
 		--
-		--defaults = {
-		--   mappings = {
-		--     i = { ['<c-enter>'] = 'to_fuzzy_refine' },
-		--layout_strategy = 'vertical',
-		--},
+		defaults = {
+			-- mappings = { i = { ['<c-enter>'] = 'to_fuzzy_refine' },
+			-- center = {
+			-- 	width = 0.99,
+			-- 	preview_cutoff = 90
+			-- }
+		},
 		-- },
 		-- pickers = {
 		-- 	find_files = {
@@ -72,37 +80,35 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		{
 			'<leader>ps',
 			function()
-				require('telescope.builtin').live_grep {
-					prompt_title = 'Live Grep in Open Files',
-				}
+				require('telescope.builtin').live_grep(vim.tbl_extend('keep', { prompt_title = 'Live Grep in Open Files' }, builtinConfig))
 			end,
 			desc = 'Telescope: Live Grep',
 		},
 		{
 			'<leader>gf',
 			function()
-				require('telescope.builtin').git_files()
+				require('telescope.builtin').git_files(builtinConfig)
 			end,
 			desc = 'Telescope: Search [G]it [F]iles',
 		},
 		{
 			'<leader>pf',
 			function()
-				require('telescope.builtin').find_files()
+				require('telescope.builtin').find_files(builtinConfig)
 			end,
 			desc = 'Telescope: [S]earch [F]iles',
 		},
 		{
 			'<leader>sb',
 			function()
-				require('telescope.builtin').buffers()
+				require('telescope.builtin').buffers(builtinConfig)
 			end,
 			desc = 'Telescope: [S]earch [B]uffer',
 		},
 		{
 			'<leader>qf',
 			function()
-				require('telescope.builtin').quickfix()
+				require('telescope.builtin').quickfix(builtinConfig)
 			end,
 			desc = 'Telescope: [Q]uick [F]ix list',
 		},
@@ -130,21 +136,21 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		{
 			'<leader>sw',
 			function()
-				require('telescope.builtin').grep_string()
+				require('telescope.builtin').grep_string(builtinConfig)
 			end,
 			desc = 'Telescope: [S]earch current [W]ord',
 		},
 		{
 			'<leader>sd',
 			function()
-				require('telescope.builtin').diagnostics()
+				require('telescope.builtin').diagnostics(builtinConfig)
 			end,
 			desc = 'Telescope: [S]earch [D]iagnostics',
 		},
 		{
 			'<leader>sr',
 			function()
-				require('telescope.builtin').resume()
+				require('telescope.builtin').resume(builtinConfig)
 			end,
 			desc = 'Telescope: [S]earch [R]esume',
 		},
