@@ -6,7 +6,8 @@ local function getSavePath()
 	end
 end
 return {
-	'mistricky/codesnap.nvim',
+	-- 'mistricky/codesnap.nvim'
+	'jhonnyV-V/codesnap.nvim',
 	cmd = {
 		'CodeSnap', --Take a snapshot of the currently selected code and copy the snapshot into the clipboard
 		'CodeSnapSave', --Save the snapshot of the currently selected code and save it on the disk
