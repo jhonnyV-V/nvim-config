@@ -159,6 +159,7 @@ return {
 			yamlls = {},
 			pyright = {},
 			clangd = {},
+			gdtoolkit = {},
 			lua_ls = {
 				-- cmd = {...},
 				-- filetypes { ...},
@@ -224,14 +225,5 @@ return {
 				end,
 			},
 		}
-
-		local gdscriptConfig = {
-			capabilities = capabilities,
-			settings = {},
-		}
-		if vim.fn.has 'win32' == 1 then
-			gdscriptConfig.cmd = { 'ncat', 'localhost', os.getenv 'GDScript_Port' or 6005 }
-		end
-		vim.lsp.config('gdscript', gdscriptConfig)
 	end,
 }

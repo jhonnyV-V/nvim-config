@@ -2,7 +2,6 @@
 return {
 	'ggml-org/llama.vim',
 	-- 'jhonnyV-V/llama.vim',
-	-- branch = 'chore_configurable_keymaps',
 	init = function()
 		vim.g.llama_config = {
 			keymap_fim_accept_full = '<C-g>',
@@ -12,6 +11,7 @@ return {
 		}
 	end,
 	config = function()
+		-- add new colors for hint
 		vim.api.nvim_set_hl(0, 'llama_hl_hint', { fg = '#f8732e', ctermfg = 209 })
 		vim.api.nvim_set_hl(0, 'llama_hl_info', { fg = '#50fa7b', ctermfg = 119 })
 	end,
