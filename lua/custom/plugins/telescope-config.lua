@@ -136,14 +136,14 @@ return { -- Fuzzy Finder (files, lsp, etc)
 		{
 			'<leader>sw',
 			function()
-				require('telescope.builtin').grep_string(builtinConfig)
+				require('telescope.builtin').diagnostics(builtinConfig)
 			end,
-			desc = 'Telescope: [S]earch current [W]ord',
+			desc = 'Telescope: [S]earch [W]orkspace Diagnostics',
 		},
 		{
 			'<leader>sd',
 			function()
-				require('telescope.builtin').diagnostics(builtinConfig)
+				require('telescope.builtin').diagnostics(vim.tbl_extend('keep', { bufnr = 0 }, builtinConfig))
 			end,
 			desc = 'Telescope: [S]earch [D]iagnostics',
 		},
@@ -192,15 +192,6 @@ return { -- Fuzzy Finder (files, lsp, etc)
 				}
 			end,
 			desc = 'Telescope: [S]earch [N]eovim files',
-		},
-		{
-			'<leader>sp',
-			function()
-				require('telescope.builtin').find_files {
-					cwd = vim.fn.stdpath 'data',
-				}
-			end,
-			desc = 'Telescope: [S]earch [P]ackages files',
 		},
 	},
 }
